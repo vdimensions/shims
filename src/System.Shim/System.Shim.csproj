@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;netstandard1.1;netstandard1.0;net40;net35;net20</TargetFrameworks>
+  </PropertyGroup>
+  <!-- Copyright info -->
+  <PropertyGroup>
+    <Company>Virtual Dimensions</Company>
+    <CopyrightYearSince>2019</CopyrightYearSince>
+    <Authors>$(Company)</Authors>
+    <Trademark>
+    </Trademark>
+    <License>http://www.apache.org/licenses/LICENSE-2.0</License>
+  </PropertyGroup>
+  <!-- Versioning properties -->
+  <PropertyGroup>
+    <Deterministic>false</Deterministic>
+    <VersionMajor>0</VersionMajor>
+    <VersionMinor>1</VersionMinor>
+  </PropertyGroup>
+  <!-- Common props -->
+  <PropertyGroup>
+    <AppDesignerFolder Condition=" '$(AppDesignerFolder)' == '' ">Properties</AppDesignerFolder>
+    <DocumentationFile Condition=" '$(DocumentationFile)' == '' ">$(BaseOutputPath)\$(AssemblyName).xml</DocumentationFile>
+    <GenerateAssemblyInfo Condition=" '$(GenerateAssemblyInfo)' == '' ">true</GenerateAssemblyInfo>
+  </PropertyGroup>
+  <Import Project="$(MSBuildProjectDirectory)\..\..\submodules\vdimensions_msbuild_sdk\src\VDimensions.MSBuild.Sdk.targets" />
+  <!-- Versioning properties (after sdk) -->
+  <PropertyGroup>
+    <Copyright>Copyright © $(Company) $(CopyrightYearSince)-$(CopyrightYearCurrent)</Copyright>
+    <Version>$(VersionMajor).$(VersionMinor).$(VersionBuild).$(VersionRevision)</Version>
+  </PropertyGroup>
+  <!-- Assembly props -->
+  <PropertyGroup>
+    <AssemblyTitle>$(AssemblyName)</AssemblyTitle>
+    <AssemblyProduct>$(AssemblyTitle)</AssemblyProduct>
+    <AssemblyDescription>$(Description)</AssemblyDescription>
+    <AssemblyCompany>$(Company)</AssemblyCompany>
+    <AssemblyCopyright>$(Copyright)</AssemblyCopyright>
+    <AssemblyTrademark>$(Trademark)</AssemblyTrademark>
+    <AssemblyVersion>$(Version)</AssemblyVersion>
+    <AssemblyFileVersion Condition=" '$(AssemblyFileVersion)' == '' ">$(Version)</AssemblyFileVersion>
+    <AssemblyInformationalVersion Condition=" '$(AssemblyInformationalVersion)' == '' ">$(Version)</AssemblyInformationalVersion>
+    <RootNamespace>System</RootNamespace>
+  </PropertyGroup>
+  <!-- nuget package properties -->
+  <PropertyGroup>
+    <ContentTargetFolders>content</ContentTargetFolders>
+    <PackageLicense>$(License)</PackageLicense>
+    <PackageProjectUrl>
+    </PackageProjectUrl>
+    <PackageIconUri>
+    </PackageIconUri>
+    <PackageVersion Condition=" '$(PackageVersion)' == '' ">$(Version)</PackageVersion>
+    <PackageTags Condition=" '$(PackageTags)' == '' ">$(AssemblyName)</PackageTags>
+    <PackageOutputPath>$(MSBuildProjectDirectory)\..\..\dist</PackageOutputPath>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder Condition="'$(Configuration)' == 'Debug'">$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+  </PropertyGroup>
+  <Import Project=".paket\Paket.Restore.targets" />
+</Project>
