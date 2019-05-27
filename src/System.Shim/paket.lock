@@ -1,5 +1,5 @@
 STORAGE: NONE
-RESTRICTION: || (== net20) (== net35) (== net40) (== net45) (== netstandard1.0) (== netstandard1.1) (== netstandard1.2) (== netstandard1.3) (== netstandard1.4) (== netstandard1.5) (== netstandard1.6) (== netstandard2.0)
+RESTRICTION: || (== net20) (== net35) (== net40) (== net45) (== net46) (== netstandard1.0) (== netstandard1.1) (== netstandard1.2) (== netstandard1.3) (== netstandard1.4) (== netstandard1.5) (== netstandard1.6) (== netstandard2.0)
 
 GROUP net20
 STORAGE: NONE
