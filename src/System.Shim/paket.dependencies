@@ -1,12 +1,16 @@
-framework: net20, net35, net40, net45, net46, netstandard1.0, netstandard1.3, netstandard1.5, netstandard1.6, netstandard2.0
+framework: auto-detect
 storage: none
 
 source https://api.nuget.org/v3/index.json
 
 group net20
+  framework: net20
+  storage: none
   source https://api.nuget.org/v3/index.json
-    nuget LinqBridge framework: net20
+    nuget LinqBridge
 
 group net35
+  framework: net35
+  storage: none
   source https://api.nuget.org/v3/index.json
-    nuget System.Threading.Tasks.Unofficial framework: net35
+    nuget System.Threading.Tasks.Unofficial

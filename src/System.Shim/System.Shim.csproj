@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard1.6;netstandard1.5;netstandard1.4;netstandard1.3;netstandard1.2;netstandard1.1;netstandard1.0;net40;net35;net20</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;netstandard1.6;netstandard1.5;netstandard1.4;netstandard1.3;netstandard1.2;netstandard1.1;netstandard1.0;net45;net40;net35;net20</TargetFrameworks>
   </PropertyGroup>
   <!-- Copyright info -->
   <PropertyGroup>
     <Company>Virtual Dimensions</Company>
     <CopyrightYearSince>2019</CopyrightYearSince>
     <Authors>$(Company)</Authors>
-    <Trademark>
-    </Trademark>
+    <Trademark></Trademark>
     <License>http://www.apache.org/licenses/LICENSE-2.0</License>
   </PropertyGroup>
   <!-- Versioning properties -->
@@ -47,14 +46,13 @@
   <PropertyGroup>
     <ContentTargetFolders>content</ContentTargetFolders>
     <PackageLicense>$(License)</PackageLicense>
-    <PackageProjectUrl>
-    </PackageProjectUrl>
-    <PackageIconUri>
-    </PackageIconUri>
+    <PackageProjectUrl></PackageProjectUrl>
+    <PackageIconUri></PackageIconUri>
     <PackageVersion Condition=" '$(PackageVersion)' == '' ">$(Version)</PackageVersion>
     <PackageTags Condition=" '$(PackageTags)' == '' ">$(AssemblyName)</PackageTags>
     <PackageOutputPath>$(MSBuildProjectDirectory)\..\..\dist</PackageOutputPath>
     <AllowedOutputExtensionsInPackageBuildOutputFolder Condition="'$(Configuration)' == 'Debug'">$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    <NuspecFile>$(AssemblyName).nuspec</NuspecFile>
   </PropertyGroup>
   <Import Project=".paket\Paket.Restore.targets" />
 </Project>
