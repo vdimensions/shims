@@ -194,7 +194,6 @@ namespace System.Reflection
             }
             return CustomAttributeExtensions
                 .GetCustomAttributes(assembly)
-                .Where(a => a.GetType().GetCustomAttributes(typeof(AttributeUsageAttribute), false).Cast<AttributeUsageAttribute>().Any(aua => aua.Inherited == inherit))
                 .Cast<object>().ToArray();
         }
         /// <summary>
@@ -240,7 +239,6 @@ namespace System.Reflection
             }
             return CustomAttributeExtensions
                 .GetCustomAttributes(assembly)
-                .Where(a => a.GetType().GetCustomAttributes(typeof(AttributeUsageAttribute), false).Cast<AttributeUsageAttribute>().Any(aua => aua.Inherited == inherit))
                 .Cast<object>().ToArray();
         }
 
@@ -274,7 +272,12 @@ namespace System.Reflection
             {
                 throw new ArgumentNullException(nameof(type));
             }
-            return type.GetTypeInfo().GetCustomAttributes(inherit).Cast<object>().ToArray();
+            return CustomAttributeExtensions
+                .GetCustomAttributes(
+                    IntrospectionExtensions.GetTypeInfo(type), 
+                    inherit)
+                .Cast<object>()
+                .ToArray();
         }
 
         /// <summary>
