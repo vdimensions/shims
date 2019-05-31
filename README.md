@@ -2,6 +2,13 @@
 
 Provides API consistency between the different .NET framework versions. Forget the `#if-#else-#endif` preprocessor hell!
 
+Some goodies that this library brings:
+
+* Reflection API consistency between .NET Standard 2.0 and earlier .NET Standard versions (1.0 - 1.5) and .NET Framework (v3.5 - v4.0)
+* Exposed `System.Linq.ExpressionVisitor` in .NET Framework v3.5
+* Provides the additional `Func<T..., TResult>` delegates defined in .NET Standard to .NET Framework v3.5 and v4.0
+* Refers to third-party library LinqBridge for projects targeting .NET Framework 2.0 so that Linq Enumerable methods are available
+
 ## A Quick Glossary
 
 The naming of different .NET tools and frameworks that will be used in this document can be confusing to some folks (including me at first). Here is some quick reference to avoid ambiguity and confusion:
