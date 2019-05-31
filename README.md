@@ -1,6 +1,6 @@
 # System.Shims
 
-Provides consistency between the different .NET framework versions. Forget the `#if-#else-#endif` preprocessor hell!
+Provides API consistency between the different .NET framework versions. Forget the `#if-#else-#endif` preprocessor hell!
 
 ## A Quick Glossary
 

@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>System.Shims</id>
+    <version>0.1.146.19761</version>
+    <authors>Virtual Dimensions</authors>
+    <owners>Virtual Dimensions</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A library that provides API consistency between the different .NET framework versions.</description>
+    <copyright>Copyright © Virtual Dimensions 2019-2019</copyright>
+    <tags>System.Shims</tags>
+    <dependencies>
+      <group targetFramework="net20">
+        <dependency id="LinqBridge" version="1.3.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net35">
+        <dependency id="System.Threading.Tasks.Unofficial" version="3.1.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net40" />
+      <group targetFramework="netstandard1.0">
+        <dependency id="NETStandard.Library" version="1.6.1" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="netstandard1.1">
+        <dependency id="NETStandard.Library" version="1.6.1" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="netstandard1.2">
+        <dependency id="NETStandard.Library" version="1.6.1" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="netstandard1.3">
+        <dependency id="NETStandard.Library" version="1.6.1" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="netstandard1.4">
+        <dependency id="NETStandard.Library" version="1.6.1" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="netstandard1.5">
+        <dependency id="NETStandard.Library" version="1.6.1" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="netstandard1.6">
+        <dependency id="NETStandard.Library" version="1.6.1" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="netstandard2.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Debug\net20\System.Shims.dll" target="lib\net20\System.Shims.dll" />
+    <file src="bin\Debug\net20\System.Shims.pdb" target="lib\net20\System.Shims.pdb" />
+    <file src="bin\Debug\net20\System.Shims.xml" target="lib\net20\System.Shims.xml" />
+
+    <file src="bin\Debug\net35\System.Shims.dll" target="lib\net35\System.Shims.dll" />
+    <file src="bin\Debug\net35\System.Shims.pdb" target="lib\net35\System.Shims.pdb" />
+    <file src="bin\Debug\net35\System.Shims.xml" target="lib\net35\System.Shims.xml" />
+
+    <file src="bin\Debug\net40\System.Shims.dll" target="lib\net40\System.Shims.dll" />
+    <file src="bin\Debug\net40\System.Shims.pdb" target="lib\net40\System.Shims.pdb" />
+    <file src="bin\Debug\net40\System.Shims.xml" target="lib\net40\System.Shims.xml" />
+    <!-- 
+    <file src="bin\Debug\net45\System.Shims.dll" target="lib\net45\System.Shims.dll" />
+    <file src="bin\Debug\net45\System.Shims.pdb" target="lib\net45\System.Shims.pdb" />
+    <file src="bin\Debug\net45\System.Shims.xml" target="lib\net45\System.Shims.xml" />
+     -->
+    <file src="bin\Debug\netstandard1.0\System.Shims.dll" target="lib\netstandard1.0\System.Shims.dll" />
+    <file src="bin\Debug\netstandard1.0\System.Shims.pdb" target="lib\netstandard1.0\System.Shims.pdb" />
+    <file src="bin\Debug\netstandard1.0\System.Shims.xml" target="lib\netstandard1.0\System.Shims.xml" />
+
+    <file src="bin\Debug\netstandard1.1\System.Shims.dll" target="lib\netstandard1.1\System.Shims.dll" />
+    <file src="bin\Debug\netstandard1.1\System.Shims.pdb" target="lib\netstandard1.1\System.Shims.pdb" />
+    <file src="bin\Debug\netstandard1.1\System.Shims.xml" target="lib\netstandard1.1\System.Shims.xml" />
+
+    <file src="bin\Debug\netstandard1.2\System.Shims.dll" target="lib\netstandard1.2\System.Shims.dll" />
+    <file src="bin\Debug\netstandard1.2\System.Shims.pdb" target="lib\netstandard1.2\System.Shims.pdb" />
+    <file src="bin\Debug\netstandard1.2\System.Shims.xml" target="lib\netstandard1.2\System.Shims.xml" />
+
+    <file src="bin\Debug\netstandard1.3\System.Shims.dll" target="lib\netstandard1.3\System.Shims.dll" />
+    <file src="bin\Debug\netstandard1.3\System.Shims.pdb" target="lib\netstandard1.3\System.Shims.pdb" />
+    <file src="bin\Debug\netstandard1.3\System.Shims.xml" target="lib\netstandard1.3\System.Shims.xml" />
+
+    <file src="bin\Debug\netstandard1.4\System.Shims.dll" target="lib\netstandard1.4\System.Shims.dll" />
+    <file src="bin\Debug\netstandard1.4\System.Shims.pdb" target="lib\netstandard1.4\System.Shims.pdb" />
+    <file src="bin\Debug\netstandard1.4\System.Shims.xml" target="lib\netstandard1.4\System.Shims.xml" />
+
+    <file src="bin\Debug\netstandard1.5\System.Shims.dll" target="lib\netstandard1.5\System.Shims.dll" />
+    <file src="bin\Debug\netstandard1.5\System.Shims.pdb" target="lib\netstandard1.5\System.Shims.pdb" />
+    <file src="bin\Debug\netstandard1.5\System.Shims.xml" target="lib\netstandard1.5\System.Shims.xml" />
+
+    <file src="bin\Debug\netstandard1.6\System.Shims.dll" target="lib\netstandard1.6\System.Shims.dll" />
+    <file src="bin\Debug\netstandard1.6\System.Shims.pdb" target="lib\netstandard1.6\System.Shims.pdb" />
+    <file src="bin\Debug\netstandard1.6\System.Shims.xml" target="lib\netstandard1.6\System.Shims.xml" />
+
+    <file src="bin\Debug\netstandard2.0\System.Shims.dll" target="lib\netstandard2.0\System.Shims.dll" />
+    <file src="bin\Debug\netstandard2.0\System.Shims.pdb" target="lib\netstandard2.0\System.Shims.pdb" />
+    <file src="bin\Debug\netstandard2.0\System.Shims.xml" target="lib\netstandard2.0\System.Shims.xml" />
+  </files>
+</package>
