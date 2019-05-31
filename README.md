@@ -1,6 +1,6 @@
 # System.Shims
 
-Provides consistency between the different .NET framework versions. Forget the `if-else-endif preprocessor` hell!
+Provides consistency between the different .NET framework versions. Forget the `#if-#else-#endif` preprocessor hell!
 
 ## A Quick Glossary
 
@@ -20,6 +20,6 @@ The naming of different .NET tools and frameworks that will be used in this docu
 
 The main goal of this project is to provide *working* fills for a couple of API gaps between earlier **.NET Standard** versions and the **.NET Frameworks**, but it also brings few of the new goodies to earlier .NET Framework versions.
 
-Since the introduction of **.NET Standard**, it has become clear that the .NET world was undergoing a great effort of consolidation for the vast range of APIs and pursuing better platform coverage. Since the job was complicated, it lead to the creation of a few **.NET Standard** / **.NET Core** versions with increasing set of supported APIs with each release, having **.NET Standard 2.0** as the latest stable release (at the moment of creating this document). **.NET Standard 2.0** is now being way closer to the **.NET Framework**'s set of APIs than it's predecesors.
+Since the introduction of **.NET Standard**, it has become clear that the .NET world was undergoing a great effort of consolidation for the vast range of APIs and pursuing better platform coverage. Because the job was complicated, it lead to the creation of a few **.NET Standard** / **.NET Core** versions with increasing set of supported APIs with each release, having **.NET Standard 2.0** as the latest stable release (at the moment of creating this document). **.NET Standard 2.0** is now being way closer to the **.NET Framework**'s set of APIs than it's predecesors.
 
 This small project aims to encourage following the standartization trend, by exposing a number of the .NET Standard 2.0 APIs to earlier versions of the **.NET Standard**, as well as to earlier versions of the **.NET Framework** itself. 
