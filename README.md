@@ -1,6 +1,6 @@
 # System.Shims
 
-A library that aims to aid development of multi-targeting .NET projects by enabling .NET apis across a wide range of framework versions, thus reducing the preprocessor if-else clutter.
+Provides consistency between the different .NET framework versions. Forget the `if-else-endif preprocessor` hell!
 
 ## A Quick Glossary
 
@@ -16,10 +16,9 @@ The naming of different .NET tools and frameworks that will be used in this docu
   This is the standardized version of the framework, with reduced (and at places slightly changed) APIs, which covers all the various platforms. This is not a version of the framework by itself, rather an *abstract* set of APIs that are guaranteed to work on all the platforms that can run .NET Core or .NET Framework (since certain versions). 
   It is intended to be the primary choice for developing .NET libraries, as this guarantees high degrees of portability.
 
+## Purpose and Reasoning
 
-The main goal is to provide easier adaptation across some API gaps between earlier .NET Standard versions and the .NET Frameworks, but it also brings few of the new goodies to earlier .NET Framework versions.
-
-## Reasoning
+The main goal of this project is to provide *working* fills for a couple of API gaps between earlier **.NET Standard** versions and the **.NET Frameworks**, but it also brings few of the new goodies to earlier .NET Framework versions.
 
 Since the introduction of **.NET Standard**, it has become clear that the .NET world was undergoing a great effort of consolidation for the vast range of APIs and pursuing better platform coverage. Since the job was complicated, it lead to the creation of a few **.NET Standard** / **.NET Core** versions with increasing set of supported APIs with each release, having **.NET Standard 2.0** as the latest stable release (at the moment of creating this document). **.NET Standard 2.0** is now being way closer to the **.NET Framework**'s set of APIs than it's predecesors.
 
