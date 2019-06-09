@@ -1,4 +1,4 @@
-# System.Shims
+# NETStandard.Shim
 
 Provides API consistency between the different .NET framework versions. Forget the `#if-#else-#endif` preprocessor hell!
 

@@ -1,4 +1,4 @@
-project='System.Shim'
+project='NETStandard.Shim'
 
 ./restore.sh
 

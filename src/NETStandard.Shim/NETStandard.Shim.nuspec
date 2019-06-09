@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
-    <id>System.Shims</id>
+    <id>NETStandard.Shim</id>
     <version>0.1.146.19761</version>
     <authors>Virtual Dimensions</authors>
     <owners>Virtual Dimensions</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A library that provides API consistency between the different .NET framework versions.</description>
     <copyright>Copyright © Virtual Dimensions 2019-2019</copyright>
-    <tags>System.Shims</tags>
+    <tags>NETStandard.Shim</tags>
     <dependencies>
       <group targetFramework="net20">
         <dependency id="LinqBridge" version="1.3.0" exclude="Build,Analyzers" />

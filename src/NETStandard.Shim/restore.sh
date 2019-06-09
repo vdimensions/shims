@@ -1,5 +1,5 @@
 paket='.paket/paket.sh'
-project='System.Shim'
+project='NETStandard.Shim'
 project_format='csproj'
 
 rm -rf paket-files/ && $paket update && rm -rf obj/ && mkdir obj/ && dotnet restore $project.$project_format
