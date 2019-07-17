@@ -8,7 +8,8 @@
     <Company>Virtual Dimensions</Company>
     <CopyrightYearSince>2019</CopyrightYearSince>
     <Authors>$(Company)</Authors>
-    <Trademark></Trademark>
+    <Trademark>
+    </Trademark>
     <License>http://www.apache.org/licenses/LICENSE-2.0</License>
   </PropertyGroup>
   <!-- Versioning properties -->
@@ -46,13 +47,15 @@
   <PropertyGroup>
     <ContentTargetFolders>content</ContentTargetFolders>
     <PackageLicense>$(License)</PackageLicense>
-    <PackageProjectUrl></PackageProjectUrl>
-    <PackageIconUri></PackageIconUri>
+    <PackageProjectUrl>
+    </PackageProjectUrl>
+    <PackageIconUri>
+    </PackageIconUri>
     <PackageVersion Condition=" '$(PackageVersion)' == '' ">$(Version)</PackageVersion>
     <PackageTags Condition=" '$(PackageTags)' == '' ">$(AssemblyName)</PackageTags>
     <PackageOutputPath>$(MSBuildProjectDirectory)\..\..\dist</PackageOutputPath>
     <AllowedOutputExtensionsInPackageBuildOutputFolder Condition="'$(Configuration)' == 'Debug'">$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
     <NuspecFile>$(AssemblyName).nuspec</NuspecFile>
   </PropertyGroup>
-  <Import Project=".paket\Paket.Restore.targets" />
+  <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>
