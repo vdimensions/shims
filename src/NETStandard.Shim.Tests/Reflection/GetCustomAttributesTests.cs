@@ -1,11 +1,11 @@
 using System.Linq;
 using System.Reflection;
-using NETStandard.Shim.Tests;
+using NETStandard.Shim.Tests.Reflection;
 using NUnit.Framework;
 
 [assembly:Custom(Value = "Assembly")]
 
-namespace NETStandard.Shim.Tests
+namespace NETStandard.Shim.Tests.Reflection
 {
     [Custom(Value = "Class")]
     public class GetCustomAttributesTests
