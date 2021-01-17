@@ -3,59 +3,60 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;netstandard1.6;netstandard1.5;netstandard1.4;netstandard1.3;netstandard1.2;netstandard1.1;netstandard1.0;net46;net45;net40;net35;net20</TargetFrameworks>
   </PropertyGroup>
-  <!-- Copyright info -->
-  <PropertyGroup>
-    <Company>Virtual Dimensions</Company>
-    <CopyrightYearSince>2019</CopyrightYearSince>
-    <Authors>$(Company)</Authors>
-    <Trademark>
-    </Trademark>
-    <License>http://www.apache.org/licenses/LICENSE-2.0</License>
-  </PropertyGroup>
-  <!-- Versioning properties -->
-  <PropertyGroup>
-    <Deterministic>false</Deterministic>
-    <VersionMajor>0</VersionMajor>
-    <VersionMinor>1</VersionMinor>
-  </PropertyGroup>
-  <!-- Common props -->
-  <PropertyGroup>
-    <AppDesignerFolder Condition=" '$(AppDesignerFolder)' == '' ">Properties</AppDesignerFolder>
-    <DocumentationFile Condition=" '$(DocumentationFile)' == '' ">$(BaseOutputPath)\$(AssemblyName).xml</DocumentationFile>
-    <GenerateAssemblyInfo Condition=" '$(GenerateAssemblyInfo)' == '' ">true</GenerateAssemblyInfo>
-  </PropertyGroup>
-  <Import Project="$(MSBuildProjectDirectory)\..\..\submodules\vdimensions_msbuild_sdk\src\VDimensions.MSBuild.Sdk.targets" />
-  <!-- Versioning properties (after sdk) -->
-  <PropertyGroup>
-    <Copyright>Copyright © $(Company) $(CopyrightYearSince)-$(CopyrightYearCurrent)</Copyright>
-    <Version>$(VersionMajor).$(VersionMinor).$(VersionBuild).$(VersionRevision)</Version>
-  </PropertyGroup>
+  
+  <Import Project="$(MSBuildProjectDirectory)\..\NETStandard.Shim.targets" />
+  
   <!-- Assembly props -->
   <PropertyGroup>
-    <AssemblyTitle>$(AssemblyName)</AssemblyTitle>
-    <AssemblyProduct>$(AssemblyTitle)</AssemblyProduct>
-    <AssemblyDescription>$(Description)</AssemblyDescription>
-    <AssemblyCompany>$(Company)</AssemblyCompany>
-    <AssemblyCopyright>$(Copyright)</AssemblyCopyright>
-    <AssemblyTrademark>$(Trademark)</AssemblyTrademark>
-    <AssemblyVersion>$(Version)</AssemblyVersion>
-    <AssemblyFileVersion Condition=" '$(AssemblyFileVersion)' == '' ">$(Version)</AssemblyFileVersion>
-    <AssemblyInformationalVersion Condition=" '$(AssemblyInformationalVersion)' == '' ">$(Version)</AssemblyInformationalVersion>
+    <!-- <AssemblyFileVersion Condition=" '$(AssemblyFileVersion)' == '' ">$(Version)</AssemblyFileVersion> -->
+    <!-- <AssemblyInformationalVersion Condition=" '$(AssemblyInformationalVersion)' == '' ">$(Version)</AssemblyInformationalVersion> -->
     <RootNamespace>System</RootNamespace>
   </PropertyGroup>
-  <!-- nuget package properties -->
-  <PropertyGroup>
-    <ContentTargetFolders>content</ContentTargetFolders>
-    <PackageLicense>$(License)</PackageLicense>
-    <PackageProjectUrl>
-    </PackageProjectUrl>
-    <PackageIconUri>
-    </PackageIconUri>
-    <PackageVersion Condition=" '$(PackageVersion)' == '' ">$(Version)</PackageVersion>
-    <PackageTags Condition=" '$(PackageTags)' == '' ">$(AssemblyName)</PackageTags>
-    <PackageOutputPath>$(MSBuildProjectDirectory)\..\..\dist</PackageOutputPath>
-    <AllowedOutputExtensionsInPackageBuildOutputFolder Condition="'$(Configuration)' == 'Debug'">$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
-    <NuspecFile>$(AssemblyName).nuspec</NuspecFile>
+
+  <!-- ReferenceSource files, conditionally referenced depending on target framework -->
+  <PropertyGroup Condition="'$(TargetFramework)'=='net20'">
+    <DefineConstants>$(DefineConstants);FEATURE_RANDOMIZED_STRING_HASHING</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
-  <Import Project="..\.paket\Paket.Restore.targets" />
+  
+  <ItemGroup Condition="'$(TargetFramework)'=='net20'">
+    <Compile Include="../../submodules/referencesource/mscorlib/system/collections/generic/ireadonlycollection.cs" Link="Collections\Generic\IReadOnlyCollection.cs" />
+    <Compile Include="../../submodules/referencesource/mscorlib/system/collections/generic/ireadonlydictionary.cs" Link="Collections\Generic\IReadOnlyDictionary.cs" />
+    <Compile Include="../../submodules/referencesource/mscorlib/system/collections/generic/ireadonlylist.cs" Link="Collections\Generic\IReadOnlyList.cs" />
+    <!-- 
+    <Compile Include="../../submodules/referencesource/mscorlib/system/collections/hashtable.cs" Link="Collections\HashTable.cs" />
+    <Compile Include="../../submodules/referencesource/mscorlib/system/collections/generic/ireadonlycollection.cs" Link="Collections\Generic\IReadOnlyCollection.cs" />
+    <Compile Include="../../submodules/referencesource/System/compmod/system/collections/generic/iset.cs" Link="Collections\Generic\ISet.cs" />
+    -->
+    <Compile Include="../../submodules/referencesource/System.Core/System/Collections/Generic/BitHelper.cs" Link="Collections\Generic\BitHelper.cs" />
+    <!-- 
+    <Compile Include="../../submodules/referencesource/System.Core/System/Collections/Generic/HashSet.cs" Link="Collections\Generic\HashSet.cs" />
+    <Compile Include="../../submodules/referencesource/System.Core/System/Collections/Generic/HashSetDebugView.cs" Link="Collections\Generic\HashSetDebugView.cs" />
+    <Compile Include="../../submodules/referencesource/System.Core/System/Collections/Generic/HashSetEqualityComparer.cs" Link="Collections\Generic\HashSetEqualityComparer.cs" />
+    -->
+    <Compile Include="../../submodules/referencesource/mscorlib/system/diagnostics/contracts/contracts.cs" Link="Diagnostics\Contracts\contracts.cs" />
+    <!-- <Compile Include="../../submodules/referencesource/mscorlib/system/reflection/introspectionextensions.cs" Link="Reflection\introspectionextensions.cs" /> -->
+    <!-- <Compile Include="../../submodules/referencesource/mscorlib/system/reflection/ireflectabletype.cs" Link="Reflection\ireflectabletype.cs" /> -->
+    <!-- <Compile Include="../../submodules/referencesource/mscorlib/system/reflection/typeinfo.cs" Link="Reflection\typeinfo.cs" /> -->
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)'=='net35'">
+    <Compile Include="../../submodules/referencesource/mscorlib/system/collections/generic/ireadonlycollection.cs" Link="Collections\Generic\IReadOnlyCollection.cs" />
+    <Compile Include="../../submodules/referencesource/mscorlib/system/collections/generic/ireadonlydictionary.cs" Link="Collections\Generic\IReadOnlyDictionary.cs" />
+    <Compile Include="../../submodules/referencesource/mscorlib/system/collections/generic/ireadonlylist.cs" Link="Collections\Generic\IReadOnlyList.cs" />
+    <Compile Include="../../submodules/referencesource/mscorlib/system/diagnostics/contracts/contracts.cs" Link="Diagnostics\Contracts\contracts.cs" />
+    <!-- <Compile Include="../../submodules/referencesource/mscorlib/system/reflection/introspectionextensions.cs" Link="Reflection\introspectionextensions.cs" /> -->
+    <!-- <Compile Include="../../submodules/referencesource/mscorlib/system/reflection/ireflectabletype.cs" Link="Reflection\ireflectabletype.cs" /> -->
+    <!-- <Compile Include="../../submodules/referencesource/mscorlib/system/reflection/typeinfo.cs" Link="Reflection\typeinfo.cs" /> -->
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)'=='net40'">
+    <Compile Include="../../submodules/referencesource/mscorlib/system/collections/generic/ireadonlycollection.cs" Link="Collections\Generic\IReadOnlyCollection.cs" />
+    <Compile Include="../../submodules/referencesource/mscorlib/system/collections/generic/ireadonlydictionary.cs" Link="Collections\Generic\IReadOnlyDictionary.cs" />
+    <Compile Include="../../submodules/referencesource/mscorlib/system/collections/generic/ireadonlylist.cs" Link="Collections\Generic\IReadOnlyList.cs" />
+    <!-- <Compile Include="../../submodules/referencesource/mscorlib/system/reflection/introspectionextensions.cs" Link="Reflection\introspectionextensions.cs" /> -->
+    <!-- <Compile Include="../../submodules/referencesource/mscorlib/system/reflection/ireflectabletype.cs" Link="Reflection\ireflectabletype.cs" /> -->
+    <!-- <Compile Include="../../submodules/referencesource/mscorlib/system/reflection/typeinfo.cs" Link="Reflection\typeinfo.cs" /> -->
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Diagnostics\Contracts\" />
+  </ItemGroup>
 </Project>

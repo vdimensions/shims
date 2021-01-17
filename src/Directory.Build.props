@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <PropertyGroup>
+    <!-- make MSBuild track this file for incremental builds. -->
+    <!-- ref https://blogs.msdn.microsoft.com/msbuild/2005/09/26/how-to-ensure-changes-to-a-custom-target-file-prompt-a-rebuild/ -->
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+  </PropertyGroup>
+  
+  <!-- Copyright info -->
+  <PropertyGroup>
+    <Company>Virtual Dimensions</Company>
+    <CopyrightYearSince>2019</CopyrightYearSince>
+    <Authors>$(Company)</Authors>
+    <Trademark></Trademark>
+    <License>Apache-2.0</License>
+  </PropertyGroup>
+
+  <!-- Versioning properties -->
+  <PropertyGroup>
+    <Deterministic>false</Deterministic>
+    <VersionMajor>0</VersionMajor>
+    <VersionMinor>1</VersionMinor>
+  </PropertyGroup>
+
+  <!-- Common props -->
+  <PropertyGroup>
+    <AppDesignerFolder Condition=" '$(AppDesignerFolder)' == '' ">Properties</AppDesignerFolder>
+    <GenerateAssemblyInfo Condition=" '$(GenerateAssemblyInfo)' == '' ">true</GenerateAssemblyInfo>
+    <MultiProcessorCompilation>false</MultiProcessorCompilation>
+  </PropertyGroup>
+
+  <!-- Packaging properties -->
+  <PropertyGroup>
+    <RestoreSources>https://api.nuget.org/v3/index.json;$(RestoreSources)</RestoreSources>
+    <PackageOutputPath>$(MSBuildProjectDirectory)\..\..\..\..\dist</PackageOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="Exists('$(PackageOutputPath)\restore')">
+    <RestoreSources>$(PackageOutputPath)\restore;$(RestoreSources)</RestoreSources>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DefineConstants>$(DefineConstants);TRACE;DEBUG</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DefineConstants>$(DefineConstants);TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <DefineConstants>$(DefineConstants);NETSTANDARD_SHIM</DefineConstants>
+  </PropertyGroup>
+
+  <!-- Configure VDimensions MSBuild Sdk -->
+  <PropertyGroup>
+    <!-- Enable local nuget feed for packages produced by this project -->
+    <EnableLocalPackageRestore>true</EnableLocalPackageRestore>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- 
+      Disable multi-targeting inclusion from the VDimensions.MSBuild.Sdk.targets because it now
+      comes from a nuget package
+    -->
+    <EnableMultitargeting>false</EnableMultitargeting>
+    <EnableProjectMetadata>false</EnableProjectMetadata>
+  </PropertyGroup>
+
+  <Import Project="$(MSBuildProjectDirectory)\..\..\submodules\vdimensions_msbuild_sdk\src\VDimensions.MSBuild.Sdk.targets" />
+  <ItemGroup>
+    <PackageReference Include="VDimensions.MSBuild.Sdk.Defaults" Version="0.2.*">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="VDimensions.MSBuild.Sdk.Multitargeting" Version="0.2.*">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <!-- Versioning properties (after sdk) -->
+  <PropertyGroup>
+    <Copyright>Copyright © $(Company) $(CopyrightYearSince)-$(CopyrightYearCurrent)</Copyright>
+    <VersionPrefix>$(VersionMajor).$(VersionMinor).$(VersionBuild).$(VersionRevision)</VersionPrefix>
+    <PackageVersionRange>$(VersionMajor).$(VersionMinor).*</PackageVersionRange>
+  </PropertyGroup>
+
+  <!-- Assembly props -->
+  <PropertyGroup>
+    <AssemblyTitle>$(AssemblyName)</AssemblyTitle>
+    <AssemblyProduct>$(AssemblyTitle)</AssemblyProduct>
+    <AssemblyDescription>$(Description)</AssemblyDescription>
+    <AssemblyCompany>$(Company)</AssemblyCompany>
+    <AssemblyCopyright>$(Copyright)</AssemblyCopyright>  
+    <AssemblyTrademark>$(Trademark)</AssemblyTrademark>
+    <AssemblyVersion>$(Version)</AssemblyVersion>
+  </PropertyGroup>
+
+  <!-- <PropertyGroup>
+    <AssemblyFileVersion Condition=" '$(AssemblyFileVersion)' == '' ">$(Version)</AssemblyFileVersion>
+    <AssemblyInformationalVersion Condition=" '$(AssemblyInformationalVersion)' == '' ">$(Version)</AssemblyInformationalVersion>
+  </PropertyGroup> -->
+
+  <!-- NuGet package properties -->
+  <PropertyGroup>
+    <ContentTargetFolders>content</ContentTargetFolders>
+    <PackageLicense>$(License)</PackageLicense>
+    <PackageLicenseExpression>$(PackageLicense)</PackageLicenseExpression>
+    <PackageProjectUrl></PackageProjectUrl>
+    <PackageIconUri></PackageIconUri>
+    <PackageVersion Condition=" '$(PackageVersion)' == '' ">$(Version)</PackageVersion>
+    <PackageTags Condition=" '$(PackageTags)' == '' ">$(AssemblyName)</PackageTags>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder Condition="'$(Configuration)' == 'Debug'">$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/vdimensions/netstandard.shim</RepositoryUrl>
+  </PropertyGroup>
+
+  <!-- NuGet package properties -->
+  <PropertyGroup>
+    <NuspecFile>$(AssemblyName).nuspec</NuspecFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="packages\**" />
+    <Compile Remove="paket-files\**" />
+    <EmbeddedResource Remove="packages\**" />
+    <EmbeddedResource Remove="paket-files\**" />
+    <None Remove="packages\**" />
+    <None Remove="paket-files\**" />
+  </ItemGroup>
+</Project>

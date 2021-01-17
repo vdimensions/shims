@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿#if NETSTANDARD && !NETSTANDARD2_0_OR_NEWER
+using System.Linq;
 
 namespace System.Reflection
 {
@@ -7,7 +8,6 @@ namespace System.Reflection
     /// </summary>
     public static class CustomAttributeShim
     {
-#       if NETSTANDARD && !NETSTANDARD2_0_OR_NEWER
         /// <summary>
         /// Gets all the custom attributes for this <see cref="Assembly">assembly</see>.
         /// </summary>
@@ -164,6 +164,6 @@ namespace System.Reflection
             }
             return type.GetTypeInfo().GetCustomAttributes(attributeType, inherit).Cast<object>().ToArray();
         }
-#       endif
     }
 }
+#endif

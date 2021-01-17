@@ -1,5 +1,0 @@
-group net20
-  LinqBridge
-
-group net35
-  System.Threading.Tasks.Unofficial
