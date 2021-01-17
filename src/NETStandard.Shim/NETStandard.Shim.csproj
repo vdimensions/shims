@@ -23,6 +23,8 @@
     <Compile Include="../../submodules/referencesource/mscorlib/system/collections/generic/ireadonlycollection.cs" Link="Collections\Generic\IReadOnlyCollection.cs" />
     <Compile Include="../../submodules/referencesource/mscorlib/system/collections/generic/ireadonlydictionary.cs" Link="Collections\Generic\IReadOnlyDictionary.cs" />
     <Compile Include="../../submodules/referencesource/mscorlib/system/collections/generic/ireadonlylist.cs" Link="Collections\Generic\IReadOnlyList.cs" />
+    <Compile Include="../../submodules/referencesource/mscorlib/system/collections/objectmodel/readonlycollection.cs" Link="Collections\ObjectModel\ReadOnlyCollection.cs" />
+    <Compile Include="../../submodules/referencesource/mscorlib/system/collections/objectmodel/readonlydictionary.cs" Link="Collections\ObjectModel\ReadOnlyDictionary.cs" />
     <!-- 
     <Compile Include="../../submodules/referencesource/mscorlib/system/collections/hashtable.cs" Link="Collections\HashTable.cs" />
     <Compile Include="../../submodules/referencesource/mscorlib/system/collections/generic/ireadonlycollection.cs" Link="Collections\Generic\IReadOnlyCollection.cs" />
@@ -43,6 +45,8 @@
     <Compile Include="../../submodules/referencesource/mscorlib/system/collections/generic/ireadonlycollection.cs" Link="Collections\Generic\IReadOnlyCollection.cs" />
     <Compile Include="../../submodules/referencesource/mscorlib/system/collections/generic/ireadonlydictionary.cs" Link="Collections\Generic\IReadOnlyDictionary.cs" />
     <Compile Include="../../submodules/referencesource/mscorlib/system/collections/generic/ireadonlylist.cs" Link="Collections\Generic\IReadOnlyList.cs" />
+    <Compile Include="../../submodules/referencesource/mscorlib/system/collections/objectmodel/readonlycollection.cs" Link="Collections\ObjectModel\ReadOnlyCollection.cs" />
+    <Compile Include="../../submodules/referencesource/mscorlib/system/collections/objectmodel/readonlydictionary.cs" Link="Collections\ObjectModel\ReadOnlyDictionary.cs" />
     <Compile Include="../../submodules/referencesource/mscorlib/system/diagnostics/contracts/contracts.cs" Link="Diagnostics\Contracts\contracts.cs" />
     <!-- <Compile Include="../../submodules/referencesource/mscorlib/system/reflection/introspectionextensions.cs" Link="Reflection\introspectionextensions.cs" /> -->
     <!-- <Compile Include="../../submodules/referencesource/mscorlib/system/reflection/ireflectabletype.cs" Link="Reflection\ireflectabletype.cs" /> -->
@@ -52,6 +56,8 @@
     <Compile Include="../../submodules/referencesource/mscorlib/system/collections/generic/ireadonlycollection.cs" Link="Collections\Generic\IReadOnlyCollection.cs" />
     <Compile Include="../../submodules/referencesource/mscorlib/system/collections/generic/ireadonlydictionary.cs" Link="Collections\Generic\IReadOnlyDictionary.cs" />
     <Compile Include="../../submodules/referencesource/mscorlib/system/collections/generic/ireadonlylist.cs" Link="Collections\Generic\IReadOnlyList.cs" />
+    <Compile Include="../../submodules/referencesource/mscorlib/system/collections/objectmodel/readonlycollection.cs" Link="Collections\ObjectModel\ReadOnlyCollection.cs" />
+    <Compile Include="../../submodules/referencesource/mscorlib/system/collections/objectmodel/readonlydictionary.cs" Link="Collections\ObjectModel\ReadOnlyDictionary.cs" />
     <!-- <Compile Include="../../submodules/referencesource/mscorlib/system/reflection/introspectionextensions.cs" Link="Reflection\introspectionextensions.cs" /> -->
     <!-- <Compile Include="../../submodules/referencesource/mscorlib/system/reflection/ireflectabletype.cs" Link="Reflection\ireflectabletype.cs" /> -->
     <!-- <Compile Include="../../submodules/referencesource/mscorlib/system/reflection/typeinfo.cs" Link="Reflection\typeinfo.cs" /> -->
