@@ -58,14 +58,17 @@
     </When>
     <When Condition="'$(TargetFramework)' == 'netstandard1.2'">
       <ItemGroup>
+        <PackageReference Update="Portable.ConcurrentDictionary" Version="1.0.4" />
       </ItemGroup>
     </When>
     <When Condition="'$(TargetFramework)' == 'netstandard1.1'">
       <ItemGroup>
+        <PackageReference Update="Portable.ConcurrentDictionary" Version="1.0.4" />
       </ItemGroup>
     </When>
     <When Condition="'$(TargetFramework)' == 'netstandard1.0'">
       <ItemGroup>
+        <PackageReference Update="Portable.ConcurrentDictionary" Version="1.0.4" />
       </ItemGroup>
     </When>
     <When Condition="'$(TargetFramework)' == 'net40'">
