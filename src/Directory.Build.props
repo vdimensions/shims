@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project>
   <PropertyGroup Label="Copyright">
-    <Company>Virtual Dimensions</Company>
-    <Authors>$(Company)</Authors>
+    <Authors>Virtual Dimensions</Authors>
     <CopyrightYearSince>2019</CopyrightYearSince>
     <Trademark></Trademark>
     <License>MIT</License>
@@ -46,15 +45,6 @@
     <AddDotnetfeedProjectSource>false</AddDotnetfeedProjectSource>
     <PackageOutputPath>$(MSBuildProjectDirectory)\..\..\dist</PackageOutputPath>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="packages\**" />
-    <Compile Remove="paket-files\**" />
-    <EmbeddedResource Remove="packages\**" />
-    <EmbeddedResource Remove="paket-files\**" />
-    <None Remove="packages\**" />
-    <None Remove="paket-files\**" />
-  </ItemGroup>
 
   <!-- Dependencies -->
   <ItemGroup Label="VDimensions.MSBuild.Sdk">
@@ -133,11 +123,6 @@
       </ItemGroup>
     </When>
   </Choose>
-
-  <!-- NuGet package properties -->
-<!--  <PropertyGroup>-->
-<!--    <NuspecFile>$(AssemblyName).nuspec</NuspecFile>-->
-<!--  </PropertyGroup>-->
 
   <ItemGroup>
     <Compile Remove="packages\**" />
