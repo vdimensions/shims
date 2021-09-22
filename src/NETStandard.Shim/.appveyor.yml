@@ -30,7 +30,7 @@ test:
       - '**\*.tests.dll'
 
 for:
-  - version: 0.1.{build}
+  - version: 0.2.{build}
     branches:
       only:
         - master
@@ -44,7 +44,7 @@ for:
         on:
           branch: master
 
-  - version: 0.1-{branch}.{build}
+  - version: 0.2-{branch}.{build}
     branches:
       only:
         - /alpha|beta|preview|rc|snapshot/
