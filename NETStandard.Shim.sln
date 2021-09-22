@@ -3,14 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29509.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NETStandard.Shim", "src\NETStandard.Shim\NETStandard.Shim.csproj", "{E4C30959-008F-4309-A76D-1E28312F0A94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VDimensions.NETStandard.Shim", "src\VDimensions.NETStandard.Shim\VDimensions.NETStandard.Shim.csproj", "{E4C30959-008F-4309-A76D-1E28312F0A94}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NETStandard.Shim.Tests", "src\NETStandard.Shim.Tests\NETStandard.Shim.Tests.csproj", "{1280CE22-4347-4B7F-96DB-385AA8B0DE17}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VDimensions.NETStandard.Shim.Tests", "src\VDimensions.NETStandard.Shim.Tests\VDimensions.NETStandard.Shim.Tests.csproj", "{1280CE22-4347-4B7F-96DB-385AA8B0DE17}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{776D4CE2-2B6A-4E18-B389-FACA1FB0C0C4}"
 ProjectSection(SolutionItems) = preProject
-	I:\Projects\vdimensions\NETStandard.Shim\src\Directory.Build.props = I:\Projects\vdimensions\NETStandard.Shim\src\Directory.Build.props
-	I:\Projects\vdimensions\NETStandard.Shim\src\Directory.Build.targets = I:\Projects\vdimensions\NETStandard.Shim\src\Directory.Build.targets
+	I:\Projects\vdimensions\NETStandard.Shim\src\Directory.Build.props = I:\Projects\vdimensions\VDimensions.NETStandard.Shim\src\Directory.Build.props
+	I:\Projects\vdimensions\NETStandard.Shim\src\Directory.Build.targets = I:\Projects\vdimensions\VDimensions.NETStandard.Shim\src\Directory.Build.targets
 EndProjectSection
 EndProject
 Global
