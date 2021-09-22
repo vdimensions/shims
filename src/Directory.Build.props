@@ -1,125 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project>
-  <PropertyGroup>
-    <!-- make MSBuild track this file for incremental builds. -->
-    <!-- ref https://blogs.msdn.microsoft.com/msbuild/2005/09/26/how-to-ensure-changes-to-a-custom-target-file-prompt-a-rebuild/ -->
-    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
-  </PropertyGroup>
-  
-  <!-- Copyright info -->
-  <PropertyGroup>
+  <PropertyGroup Label="Copyright">
     <Company>Virtual Dimensions</Company>
-    <CopyrightYearSince>2019</CopyrightYearSince>
     <Authors>$(Company)</Authors>
+    <CopyrightYearSince>2019</CopyrightYearSince>
     <Trademark></Trademark>
-    <License>Apache-2.0</License>
+    <License>MIT</License>
   </PropertyGroup>
 
-  <!-- Versioning properties -->
-  <PropertyGroup>
-    <Deterministic>false</Deterministic>
+  <PropertyGroup Label="SCM">
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/vdimensions/netstandard.shim</RepositoryUrl>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <ContinuousIntegrationBuild Condition=" '$(ContinuousIntegrationBuild)' == '' ">false</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
+  <PropertyGroup Label="CI" Condition=" '$(ContinuousIntegrationBuild)' == 'true' ">
+    <Deterministic>true</Deterministic>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <DebugType>portable</DebugType>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+  <ItemGroup Label="CI Support Packages" Condition=" '$(ContinuousIntegrationBuild)' == 'true' ">
+    <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All"/>
+  </ItemGroup>
+
+  <PropertyGroup Label="Versioning">
     <VersionMajor>0</VersionMajor>
     <VersionMinor>1</VersionMinor>
+    <VersionSuffix Condition=" '$(VersionSuffix)' == '' ">snapshot</VersionSuffix>
   </PropertyGroup>
 
-  <!-- Common props -->
-  <PropertyGroup>
+  <PropertyGroup Label="Common">
     <AppDesignerFolder Condition=" '$(AppDesignerFolder)' == '' ">Properties</AppDesignerFolder>
     <GenerateAssemblyInfo Condition=" '$(GenerateAssemblyInfo)' == '' ">true</GenerateAssemblyInfo>
     <MultiProcessorCompilation>false</MultiProcessorCompilation>
-  </PropertyGroup>
-
-  <!-- Packaging properties -->
-  <PropertyGroup>
-    <RestoreSources>https://api.nuget.org/v3/index.json;$(RestoreSources)</RestoreSources>
-    <PackageOutputPath>$(MSBuildProjectDirectory)\..\..\..\..\dist</PackageOutputPath>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="Exists('$(PackageOutputPath)\restore')">
-    <RestoreSources>$(PackageOutputPath)\restore;$(RestoreSources)</RestoreSources>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <DefineConstants>$(DefineConstants);TRACE;DEBUG</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <DefineConstants>$(DefineConstants);TRACE</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup>
+    <AnalysisLevel>latest</AnalysisLevel>
     <DefineConstants>$(DefineConstants);NETSTANDARD_SHIM</DefineConstants>
+    <DefineConstants Condition=" '$(Configuration)' == 'Debug' ">$(DefineConstants);TRACE;DEBUG</DefineConstants>
+    <DefineConstants Condition=" '$(Configuration)' == 'Release' ">$(DefineConstants);TRACE</DefineConstants>
   </PropertyGroup>
 
-  <!-- Configure VDimensions MSBuild Sdk -->
-  <PropertyGroup>
-    <!-- Enable local nuget feed for packages produced by this project -->
-    <EnableLocalPackageRestore>true</EnableLocalPackageRestore>
+  <PropertyGroup Label="Packaging">
+    <AddDotnetfeedProjectSource>false</AddDotnetfeedProjectSource>
+    <PackageOutputPath>$(MSBuildProjectDirectory)\..\..\dist</PackageOutputPath>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <!-- 
-      Disable multi-targeting inclusion from the VDimensions.MSBuild.Sdk.targets because it now
-      comes from a nuget package
-    -->
-    <EnableMultitargeting>false</EnableMultitargeting>
-    <EnableProjectMetadata>false</EnableProjectMetadata>
-  </PropertyGroup>
-
-  <Import Project="$(MSBuildProjectDirectory)\..\..\submodules\vdimensions_msbuild_sdk\src\VDimensions.MSBuild.Sdk.targets" />
   <ItemGroup>
-    <PackageReference Include="VDimensions.MSBuild.Sdk.Defaults" Version="0.2.*">
+    <Compile Remove="packages\**" />
+    <Compile Remove="paket-files\**" />
+    <EmbeddedResource Remove="packages\**" />
+    <EmbeddedResource Remove="paket-files\**" />
+    <None Remove="packages\**" />
+    <None Remove="paket-files\**" />
+  </ItemGroup>
+
+  <!-- Dependencies -->
+  <ItemGroup Label="VDimensions.MSBuild.Sdk">
+    <PackageReference Include="VDimensions.MSBuild.Sdk.Defaults">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="VDimensions.MSBuild.Sdk.Multitargeting" Version="0.2.*">
+    <PackageReference Include="VDimensions.MSBuild.Sdk.Copyright">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="VDimensions.MSBuild.Sdk.Versioning">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="VDimensions.MSBuild.Sdk.Multitargeting">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
   </ItemGroup>
 
-  <!-- Versioning properties (after sdk) -->
-  <PropertyGroup>
-    <Copyright>Copyright © $(Company) $(CopyrightYearSince)-$(CopyrightYearCurrent)</Copyright>
-    <VersionPrefix>$(VersionMajor).$(VersionMinor).$(VersionBuild).$(VersionRevision)</VersionPrefix>
-    <PackageVersionRange>$(VersionMajor).$(VersionMinor).*</PackageVersionRange>
-  </PropertyGroup>
-
-  <!-- Assembly props -->
-  <PropertyGroup>
-    <AssemblyTitle>$(AssemblyName)</AssemblyTitle>
-    <AssemblyProduct>$(AssemblyTitle)</AssemblyProduct>
-    <AssemblyDescription>$(Description)</AssemblyDescription>
-    <AssemblyCompany>$(Company)</AssemblyCompany>
-    <AssemblyCopyright>$(Copyright)</AssemblyCopyright>  
-    <AssemblyTrademark>$(Trademark)</AssemblyTrademark>
-    <AssemblyVersion>$(Version)</AssemblyVersion>
-  </PropertyGroup>
-
-  <!-- <PropertyGroup>
-    <AssemblyFileVersion Condition=" '$(AssemblyFileVersion)' == '' ">$(Version)</AssemblyFileVersion>
-    <AssemblyInformationalVersion Condition=" '$(AssemblyInformationalVersion)' == '' ">$(Version)</AssemblyInformationalVersion>
-  </PropertyGroup> -->
+  <Choose>
+    <When Condition="'$(TargetFramework)' == 'netstandard2.0'">
+      <ItemGroup>
+        <PackageReference Include="System.Diagnostics.TraceSource" />
+        <PackageReference Include="System.Threading.Thread" />
+        <PackageReference Include="System.Xml.XmlSerializer" />
+      </ItemGroup>
+    </When>
+    <When Condition="'$(TargetFramework)' == 'netstandard1.6'">
+      <ItemGroup>
+        <PackageReference Include="System.Diagnostics.TraceSource" />
+        <PackageReference Include="System.Threading.Thread" />
+        <PackageReference Include="System.Xml.XmlSerializer" />
+      </ItemGroup>
+    </When>
+    <When Condition="'$(TargetFramework)' == 'netstandard1.5'">
+      <ItemGroup>
+      </ItemGroup>
+    </When>
+    <When Condition="'$(TargetFramework)' == 'netstandard1.4'">
+      <ItemGroup>
+      </ItemGroup>
+    </When>
+    <When Condition="'$(TargetFramework)' == 'netstandard1.3'">
+      <ItemGroup>
+      </ItemGroup>
+    </When>
+    <When Condition="'$(TargetFramework)' == 'netstandard1.2'">
+      <ItemGroup>
+      </ItemGroup>
+    </When>
+    <When Condition="'$(TargetFramework)' == 'netstandard1.1'">
+      <ItemGroup>
+      </ItemGroup>
+    </When>
+    <When Condition="'$(TargetFramework)' == 'netstandard1.0'">
+      <ItemGroup>
+      </ItemGroup>
+    </When>
+    <When Condition="'$(TargetFramework)' == 'net40'">
+      <ItemGroup>
+        <PackageReference Include="NetLegacySupport.Tuple" />
+      </ItemGroup>
+    </When>
+    <When Condition="'$(TargetFramework)' == 'net35'">
+      <ItemGroup>
+        <PackageReference Include="NetLegacySupport.Tuple" />
+        <PackageReference Include="System.Threading.Tasks.Unofficial" />
+      </ItemGroup>
+    </When>
+    <When Condition="'$(TargetFramework)' == 'net20'">
+      <ItemGroup>
+        <PackageReference Include="LinqBridge" />
+        <PackageReference Include="NetLegacySupport.Tuple" />
+      </ItemGroup>
+    </When>
+  </Choose>
 
   <!-- NuGet package properties -->
-  <PropertyGroup>
-    <ContentTargetFolders>content</ContentTargetFolders>
-    <PackageLicense>$(License)</PackageLicense>
-    <PackageLicenseExpression>$(PackageLicense)</PackageLicenseExpression>
-    <PackageProjectUrl></PackageProjectUrl>
-    <PackageIconUri></PackageIconUri>
-    <PackageVersion Condition=" '$(PackageVersion)' == '' ">$(Version)</PackageVersion>
-    <PackageTags Condition=" '$(PackageTags)' == '' ">$(AssemblyName)</PackageTags>
-    <AllowedOutputExtensionsInPackageBuildOutputFolder Condition="'$(Configuration)' == 'Debug'">$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
-    
-    <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/vdimensions/netstandard.shim</RepositoryUrl>
-  </PropertyGroup>
-
-  <!-- NuGet package properties -->
-  <PropertyGroup>
-    <NuspecFile>$(AssemblyName).nuspec</NuspecFile>
-  </PropertyGroup>
+<!--  <PropertyGroup>-->
+<!--    <NuspecFile>$(AssemblyName).nuspec</NuspecFile>-->
+<!--  </PropertyGroup>-->
 
   <ItemGroup>
     <Compile Remove="packages\**" />

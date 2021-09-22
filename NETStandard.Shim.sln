@@ -9,8 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NETStandard.Shim.Tests", "s
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{776D4CE2-2B6A-4E18-B389-FACA1FB0C0C4}"
 ProjectSection(SolutionItems) = preProject
-	src\NETStandard.Shim.targets = src\NETStandard.Shim.targets
 	I:\Projects\vdimensions\NETStandard.Shim\src\Directory.Build.props = I:\Projects\vdimensions\NETStandard.Shim\src\Directory.Build.props
+	I:\Projects\vdimensions\NETStandard.Shim\src\Directory.Build.targets = I:\Projects\vdimensions\NETStandard.Shim\src\Directory.Build.targets
 EndProjectSection
 EndProject
 Global
