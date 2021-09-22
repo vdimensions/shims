@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project>
-  <!-- Versioning properties (after sdk) -->
-  <PropertyGroup>
-    <AxleVersion>$(Version)</AxleVersion>
-  </PropertyGroup>
-
   <!-- NuGet package properties -->
   <PropertyGroup>
-    <ContentTargetFolders>content</ContentTargetFolders>
+<!--    <ContentTargetFolders>content</ContentTargetFolders>-->
     <PackageLicense>$(License)</PackageLicense>
     <PackageLicenseExpression>$(PackageLicense)</PackageLicenseExpression>
     <PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>

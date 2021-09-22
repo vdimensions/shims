@@ -1,13 +1,15 @@
 # NETStandard.Shim
 
-Provides API consistency between the different .NET framework versions. Forget the `#if-#else-#endif` preprocessor hell!
+This project is an attemtp to provide API consistency between the different .NET framework versions and to avoid the `#if-#else-#endif` preprocessor hell.
 
-Some goodies that this library brings:
+This library refers the .NET reference source repository to obtain implementations of features that are missing in earlier framework vesions. See the License section for more information
 
-* Reflection API consistency between .NET Standard 2.0 and earlier .NET Standard versions (1.0 - 1.5) and .NET Framework (v3.5 - v4.0)
-* Exposed `System.Linq.ExpressionVisitor` in .NET Framework v3.5
-* Provides the additional `Func<T..., TResult>` delegates defined in .NET Standard to .NET Framework v3.5 and v4.0
-* Refers to third-party library LinqBridge for projects targeting .NET Framework 2.0 so that Linq Enumerable methods are available
+Some of the goodies that this library brings:
+
+* _[in progress]_ Reflection API consistency between .NET Standard 2.0 and earlier .NET Standard versions (1.0 - 1.5) and .NET Framework (v3.5 - v4.0)
+* Exposed `System.Linq.ExpressionVisitor` as a public inheritable class in .NET Framework v3.5
+* Exposes Linq Enumerable methods in `net20`
+* Enables support for the `System.Tuple` types in `net20`, `net35` and `net40`.
 
 ## Purpose and Reasoning
 
@@ -20,7 +22,7 @@ Since the introduction of **.NET Standard**, it has become clear that the .NET w
 The naming of different .NET tools and frameworks that will be used in this document can be confusing to some folks (including me at first). Here is some quick reference to avoid ambiguity and confusion:
 
 - **.NET Framework**  
-  This is the original .NET framework, that is available as a Windows installation. It targets Windows exclusively. To a great extent, the Mono project provides an analogue for Linux and Mac OS, and Xamarin -- for the mobile operating systems (Androud and iOS).   
+  This is the original .NET framework, that is available as a Windows installation. It targets Windows exclusively. To a great extent, the Mono project provides an analogue for Linux and Mac OS, and Xamarin -- for the mobile operating systems (Androud and iOS).  
 
  - **.NET Core**
   A cross-platform open-source variation of the framework. This is the result of an effort to consistently target many platforms. It is available as a standalone package for the major OS-es.
@@ -28,3 +30,12 @@ The naming of different .NET tools and frameworks that will be used in this docu
  - **.NET Standard**
   This is the standardized version of the framework, with reduced (and at places slightly changed) APIs, which covers all the various platforms. This is not a version of the framework by itself, rather an *abstract* set of APIs that are guaranteed to work on all the platforms that can run .NET Core or .NET Framework (since certain versions). 
   It is intended to be the primary choice for developing .NET libraries, as this guarantees high degrees of portability.
+
+## Licensing
+
+This project is licensed under the [MIT](./LICENSE) license for maximum compatbility with the [.NET reference source](https://github.com/microsoft/referencesource) codebase. Some implementations refer to that codedbase directly (it is referenced as a submodule). Please, refer to the [`submodules/referencesource/LICENSE.txt`](https://github.com/microsoft/referencesource/blob/master/LICENSE.txt) and [`submodules/referencesource/PATENTS.TXT`](https://github.com/microsoft/referencesource/blob/master/PATENTS.TXT) for information about the respective license and patents.
+
+Some of the features are implemented in popular 3rd party libraries:
+
+ - [LinqBridge](https://www.nuget.org/packages/LinqBridge) which is released under the [BSD 3-Clause License](https://github.com/atifaziz/LINQBridge/blob/master/COPYING.txt)  
+ - [NetLegacySupport](https://www.nuget.org/packages/NetLegacySupport.Tuple) that uses the [MIT License](https://github.com/SaladLab/NetLegacySupport/blob/master/LICENSE)  

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net40</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\VDimensions.NETStandard.Shim\VDimensions.NETStandard.Shim.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Nunit" Version="3.12" />
+    <PackageReference Include="Nunit3TestAdapter" Version="3.15.1" />
+  </ItemGroup>
+
+  <!-- Automatically enable binding redirects for test projects -->
+  <Choose>
+    <When Condition="'$(AutoGenerateBindingRedirects)' == ''">
+      <PropertyGroup>
+        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+      </PropertyGroup>
+    </When>
+  </Choose>
+
+  <Choose>
+    <When Condition="'$(GenerateBindingRedirectsOutputType)' == ''">
+      <PropertyGroup>
+        <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+      </PropertyGroup>
+    </When>
+  </Choose>
+
+  <!-- Ensure that a target framework is selected -->
+  <Choose>
+    <When Condition="'$(TargetFramework)' == ''">
+      <PropertyGroup>
+        <TargetFramework>net461</TargetFramework>
+      </PropertyGroup>
+    </When>
+  </Choose>
+</Project>
