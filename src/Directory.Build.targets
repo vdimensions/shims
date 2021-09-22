@@ -70,12 +70,10 @@
     </When>
     <When Condition="'$(TargetFramework)' == 'net40'">
       <ItemGroup>
-        <PackageReference Update="NetLegacySupport.Tuple" Version="1.1.1" />
       </ItemGroup>
     </When>
     <When Condition="'$(TargetFramework)' == 'net35'">
       <ItemGroup>
-        <PackageReference Update="NetLegacySupport.Tuple" Version="1.1.1" />
         <PackageReference Update="System.Threading.Tasks.Unofficial" Version="3.1" />
       </ItemGroup>
     </When>

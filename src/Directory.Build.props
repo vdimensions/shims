@@ -107,12 +107,10 @@
     </When>
     <When Condition="'$(TargetFramework)' == 'net40'">
       <ItemGroup>
-        <PackageReference Include="NetLegacySupport.Tuple" />
       </ItemGroup>
     </When>
     <When Condition="'$(TargetFramework)' == 'net35'">
       <ItemGroup>
-        <PackageReference Include="NetLegacySupport.Tuple" />
         <PackageReference Include="System.Threading.Tasks.Unofficial" />
       </ItemGroup>
     </When>
