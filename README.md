@@ -38,7 +38,7 @@ The naming of different .NET tools and frameworks that will be used in this docu
 
 ## Licensing
 
-This project is licensed under the [MIT](./LICENSE) license for maximum compatbility with the [.NET reference source](https://github.com/microsoft/referencesource) codebase. Some implementations refer to that codedbase directly (it is referenced as a submodule). Please, refer to the [`submodules/referencesource/LICENSE.txt`](https://github.com/microsoft/referencesource/blob/master/LICENSE.txt) and [`submodules/referencesource/PATENTS.TXT`](https://github.com/microsoft/referencesource/blob/master/PATENTS.TXT) for information about the respective license and patents.
+This project is licensed under the [MIT](./LICENSE) license for maximum compatbility with the [.NET reference source](https://github.com/microsoft/referencesource) codebase. Some types in this project refer to that codebase directly (it is referenced as a submodule). Please, refer to the [`submodules/referencesource/LICENSE.txt`](https://github.com/microsoft/referencesource/blob/master/LICENSE.txt) and [`submodules/referencesource/PATENTS.TXT`](https://github.com/microsoft/referencesource/blob/master/PATENTS.TXT) for information about the respective license and patents.
 
 Some of the features are implemented in popular 3rd party libraries:
 
