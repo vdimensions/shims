@@ -1,6 +1,6 @@
 # NETStandard.Shim
 
-This project is an attemtp to provide API consistency between the different .NET framework versions and to avoid the `#if-#else-#endif` preprocessor hell.
+This project is an attempt to provide API consistency between the different .NET framework versions and to avoid the `#if-#else-#endif` preprocessor hell.
 
 This library refers the .NET reference source repository to obtain implementations of features that are missing in earlier framework vesions. See the License section for more information
 
@@ -38,4 +38,4 @@ This project is licensed under the [MIT](./LICENSE) license for maximum compatbi
 Some of the features are implemented in popular 3rd party libraries:
 
  - [LinqBridge](https://www.nuget.org/packages/LinqBridge) which is released under the [BSD 3-Clause License](https://github.com/atifaziz/LINQBridge/blob/master/COPYING.txt)  
- - [NetLegacySupport](https://www.nuget.org/packages/NetLegacySupport.Tuple) that uses the [MIT License](https://github.com/SaladLab/NetLegacySupport/blob/master/LICENSE)  
+ - [NetLegacySupport.Tuple](https://www.nuget.org/packages/NetLegacySupport.Tuple) that uses the [MIT License](https://github.com/SaladLab/NetLegacySupport/blob/master/LICENSE)  
