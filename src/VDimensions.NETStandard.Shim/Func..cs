@@ -1,4 +1,4 @@
-﻿#if NETFRAMEWORK && !NET40_OR_NEWER
+﻿#if NET20
 namespace System
 {
     /// <summary>
