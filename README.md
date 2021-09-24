@@ -38,11 +38,12 @@ The naming of different .NET tools and frameworks that will be used in this docu
 
 ## Licensing
 
-This project is licensed under the [MIT](./LICENSE) license for maximum compatbility with the [.NET reference source](https://github.com/microsoft/referencesource) codebase. Some types in this project refer to that codebase directly (it is referenced as a submodule). Please, refer to the [`submodules/referencesource/LICENSE.txt`](https://github.com/microsoft/referencesource/blob/master/LICENSE.txt) and [`submodules/referencesource/PATENTS.TXT`](https://github.com/microsoft/referencesource/blob/master/PATENTS.TXT) for information about the respective license and patents.
+This project is licensed under the [MIT](./LICENSE) license for maximum compatbility with the [.NET reference source](https://github.com/microsoft/referencesource) codebase. Some types in this project refer to that codebase directly, because a fork of the reference source project is used as a submodue in this repository.  
+Please, refer to the [`submodules/referencesource/LICENSE.txt`](https://github.com/microsoft/referencesource/blob/master/LICENSE.txt) and [`submodules/referencesource/PATENTS.TXT`](https://github.com/microsoft/referencesource/blob/master/PATENTS.TXT) for information about the respective license and patents.
 
-Some of the features are implemented in popular 3rd party libraries:
+This projects includes 3rd party libraries representing some of the necessary shims. These useful projects already existed when the current project was conceived, and we see no need to reinvent the wheel. Including them here also aligns with our view of the open-source software development.  
 
- - [LinqBridge](https://www.nuget.org/packages/LinqBridge/), licensed under the [BSD 3-Clause License](https://github.com/atifaziz/LINQBridge/blob/master/COPYING.txt)  
+ - [LinqBridge](https://www.nuget.org/packages/LinqBridge/), licensed under the [BSD 3-Clause License](https://github.com/atifaziz/LINQBridge/blob/master/COPYING.txt).    
  - [NetLegacySupport.Tuple](https://www.nuget.org/packages/NetLegacySupport.Tuple/), licensed under the [MIT License](https://github.com/SaladLab/NetLegacySupport/blob/master/LICENSE)  
  - [Portable.ConcurrentDictionary](https://www.nuget.org/packages/Portable.ConcurrentDictionary/), licensed under [MIT License](https://raw.githubusercontent.com/StefH/Portable.ConcurrentDictionary/master/LICENSE)
  - [System.Threading.Tasks.Unofficial](https://www.nuget.org/packages/System.Threading.Tasks.Unofficial/). Various licenses available:
