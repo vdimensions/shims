@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <Choose>
+    <When Condition=" '$(TargetFramework)' == 'net20' ">
+      <ItemGroup>
+        <PackageReference Update="LinqBridge" Aliases="linqbridge" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <PackageReference Remove="LinqBridge" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+  
+  <Import Project="$(RootPath)/submodules/vdimensions_msbuild_references/nunit/NUnit.targets" />
+  <Import Project="$(RootPath)/submodules/vdimensions_msbuild_references/nunit/NUnit3TestAdapter.targets" />
+</Project>

@@ -4,3 +4,6 @@
 [submodule "submodules/referencesource"]
 	path = submodules/referencesource
 	url = https://github.com/vdimensions/dotnetfx_referencesource.git
+[submodule "submodules/vdimensions_msbuild_references"]
+	path = submodules/vdimensions_msbuild_references
+	url = https://gitlab.com/vdimensions/infra/vdimensions_msbuild_references.git

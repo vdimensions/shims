@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+    <NoWarn>CS1591</NoWarn>
+  </PropertyGroup>
+
+  <!-- Automatically enable binding redirects for test projects -->
+  <Choose>
+    <When Condition="'$(AutoGenerateBindingRedirects)' == ''">
+      <PropertyGroup>
+        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+      </PropertyGroup>
+    </When>
+  </Choose>
+
+  <Choose>
+    <When Condition="'$(GenerateBindingRedirectsOutputType)' == ''">
+      <PropertyGroup>
+        <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+      </PropertyGroup>
+    </When>
+  </Choose>
+  
+  <Import Project="$(RootPath)/submodules/vdimensions_msbuild_references/nunit/NUnit.props" />
+  <Import Project="$(RootPath)/submodules/vdimensions_msbuild_references/nunit/NUnit3TestAdapter.props" />
+</Project>

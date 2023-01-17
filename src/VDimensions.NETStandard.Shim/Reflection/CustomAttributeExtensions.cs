@@ -1,4 +1,4 @@
-﻿#if NET35_OR_NEWER && !(NETSTANDARD || NET45_OR_NEWER)
+﻿#if FX_CUSTOM_ATTRIBUTES
 using System.Collections.Generic;
 using System.Linq;
 
@@ -25,13 +25,17 @@ namespace System.Reflection
         /// <exception cref="ArgumentNullException">
         /// If <paramref name="assembly" /> is <c>null</c>.
         /// </exception>
-        public static IEnumerable<Attribute> GetCustomAttributes(this Assembly assembly)
+        public static IEnumerable<Attribute> GetCustomAttributes(
+            #if NETSTANDARD || NET35_OR_NEWER
+            this 
+            #endif
+            Assembly assembly)
         {
             if (assembly == null)
             {
                 throw new ArgumentNullException(nameof(assembly));
             }
-            return assembly.GetCustomAttributes(false).Cast<Attribute>();
+            return Enumerable.Cast<Attribute>(assembly.GetCustomAttributes(false));
         }
         /// <summary>
         /// Retrieves a collection of custom attributes that are applied to a specified <see cref="Assembly">assembly</see>.
@@ -52,13 +56,17 @@ namespace System.Reflection
         /// <exception cref="ArgumentNullException">
         /// Either <paramref name="assembly" /> or <paramref name="attributeType" /> is <c>null</c>.
         /// </exception>
-        public static IEnumerable<Attribute> GetCustomAttributes(this Assembly assembly, Type attributeType)
+        public static IEnumerable<Attribute> GetCustomAttributes(
+            #if NETSTANDARD || NET35_OR_NEWER
+            this 
+            #endif
+            Assembly assembly, Type attributeType)
         {
             if (assembly == null)
             {
                 throw new ArgumentNullException(nameof(assembly));
             }
-            return assembly.GetCustomAttributes(attributeType, true).Cast<Attribute>();
+            return Enumerable.Cast<Attribute>(assembly.GetCustomAttributes(attributeType, true));
         }
         /// <summary>
         /// Retrieves a collection of custom attributes that are applied to a specified <see cref="Assembly">assembly</see>.
@@ -76,13 +84,17 @@ namespace System.Reflection
         /// <exception cref="ArgumentNullException">
         /// If <paramref name="assembly" /> is <c>null</c>.
         /// </exception>
-        public static IEnumerable<TAttribute> GetCustomAttributes<TAttribute>(this Assembly assembly) where TAttribute: Attribute
+        public static IEnumerable<TAttribute> GetCustomAttributes<TAttribute>(
+            #if NETSTANDARD || NET35_OR_NEWER
+            this 
+            #endif
+            Assembly assembly) where TAttribute: Attribute
         {
             if (assembly == null)
             {
                 throw new ArgumentNullException(nameof(assembly));
             }
-            return assembly.GetCustomAttributes(typeof(TAttribute), true).Cast<TAttribute>();
+            return Enumerable.Cast<TAttribute>(assembly.GetCustomAttributes(typeof(TAttribute), true));
         }
 
         /// <summary>
@@ -101,13 +113,17 @@ namespace System.Reflection
         /// <exception cref="ArgumentNullException">
         /// If <paramref name="member" /> is <c>null</c>.
         /// </exception>
-        public static IEnumerable<Attribute> GetCustomAttributes(this MemberInfo member)
+        public static IEnumerable<Attribute> GetCustomAttributes(
+            #if NETSTANDARD || NET35_OR_NEWER
+            this 
+            #endif
+            MemberInfo member)
         {
             if (member == null)
             {
                 throw new ArgumentNullException(nameof(member));
             }
-            return member.GetCustomAttributes(true).Cast<Attribute>();
+            return Enumerable.Cast<Attribute>(member.GetCustomAttributes(true));
         }
         /// <summary>
         /// Retrieves a collection of custom attributes that are applied to a specified <see cref="MemberInfo">member</see>.
@@ -128,13 +144,17 @@ namespace System.Reflection
         /// <exception cref="ArgumentNullException">
         /// Either <paramref name="member" /> or <paramref name="attributeType" /> is <c>null</c>.
         /// </exception>
-        public static IEnumerable<Attribute> GetCustomAttributes(this MemberInfo member, Type attributeType)
+        public static IEnumerable<Attribute> GetCustomAttributes(
+            #if NETSTANDARD || NET35_OR_NEWER
+            this 
+            #endif
+            MemberInfo member, Type attributeType)
         {
             if (member == null)
             {
                 throw new ArgumentNullException(nameof(member));
             }
-            return member.GetCustomAttributes(attributeType, true).Cast<Attribute>();
+            return Enumerable.Cast<Attribute>(member.GetCustomAttributes(attributeType, true));
         }
         /// <summary>
         /// Retrieves a collection of custom attributes that are applied to a specified <see cref="MemberInfo">member</see>.
@@ -152,13 +172,17 @@ namespace System.Reflection
         /// <exception cref="ArgumentNullException">
         /// If <paramref name="member" /> is <c>null</c>.
         /// </exception>
-        public static IEnumerable<TAttribute> GetCustomAttributes<TAttribute>(this MemberInfo member) where TAttribute: Attribute
+        public static IEnumerable<TAttribute> GetCustomAttributes<TAttribute>(
+            #if NETSTANDARD || NET35_OR_NEWER
+            this 
+            #endif
+            MemberInfo member) where TAttribute: Attribute
         {
             if (member == null)
             {
                 throw new ArgumentNullException(nameof(member));
             }
-            return member.GetCustomAttributes(typeof(TAttribute), true).Cast<TAttribute>();
+            return Enumerable.Cast<TAttribute>(member.GetCustomAttributes(typeof(TAttribute), true));
         }
     }
 }

@@ -16,11 +16,17 @@ namespace VDimensions.NETStandard.Shim.Tests.Reflection
         [Custom(Value = "Method")]
         private static void DecoratedMethod() { }
 
+        #if FX_CUSTOM_ATTRIBUTES
+        private const string CustomAttributesAssemblyName = "VDimensions.NETStandard.Shim";
+        #else
+        private const string CustomAttributesAssemblyName = "mscorlib";
+        #endif
+
         [Test]
         public void TestAssemblyLevelGetCustomAttributeGenericCall()
         {
             var a = CustomAttributeExtensions.GetCustomAttributes<CustomAttribute>(typeof(GetCustomAttributesTests).Assembly).Single();
-            Assert.AreEqual("VDimensions.NETStandard.Shim", typeof(CustomAttributeExtensions).Assembly.GetName().Name);
+            Assert.AreEqual(CustomAttributesAssemblyName, typeof(CustomAttributeExtensions).Assembly.GetName().Name);
             Assert.AreEqual("Assembly", a.Value);
         }
 
@@ -28,7 +34,7 @@ namespace VDimensions.NETStandard.Shim.Tests.Reflection
         public void TestAssemblyLevelGetCustomAttributeNonGenericCall()
         {
             var a = CustomAttributeExtensions.GetCustomAttributes(typeof(GetCustomAttributesTests).Assembly).OfType<CustomAttribute>().Single();
-            Assert.AreEqual("VDimensions.NETStandard.Shim", typeof(CustomAttributeExtensions).Assembly.GetName().Name);
+            Assert.AreEqual(CustomAttributesAssemblyName, typeof(CustomAttributeExtensions).Assembly.GetName().Name);
             Assert.AreEqual("Assembly", a.Value);
         }
 
@@ -36,7 +42,7 @@ namespace VDimensions.NETStandard.Shim.Tests.Reflection
         public void TestTypeLevelGetCustomAttributeGenericCall()
         {
             var a = CustomAttributeExtensions.GetCustomAttributes<CustomAttribute>(typeof(GetCustomAttributesTests)).Single();
-            Assert.AreEqual("VDimensions.NETStandard.Shim", typeof(CustomAttributeExtensions).Assembly.GetName().Name);
+            Assert.AreEqual(CustomAttributesAssemblyName, typeof(CustomAttributeExtensions).Assembly.GetName().Name);
             Assert.AreEqual("Class", a.Value);
         }
 
@@ -44,7 +50,7 @@ namespace VDimensions.NETStandard.Shim.Tests.Reflection
         public void TestTypeLevelGetCustomAttributeNonGenericCall()
         {
             var a = CustomAttributeExtensions.GetCustomAttributes(typeof(GetCustomAttributesTests)).OfType<CustomAttribute>().Single();
-            Assert.AreEqual("VDimensions.NETStandard.Shim", typeof(CustomAttributeExtensions).Assembly.GetName().Name);
+            Assert.AreEqual(CustomAttributesAssemblyName, typeof(CustomAttributeExtensions).Assembly.GetName().Name);
             Assert.AreEqual("Class", a.Value);
         }
 
@@ -53,7 +59,7 @@ namespace VDimensions.NETStandard.Shim.Tests.Reflection
         {
             var method = typeof(GetCustomAttributesTests).GetMethod(nameof(DecoratedMethod), BindingFlags.NonPublic|BindingFlags.Static);
             var a = CustomAttributeExtensions.GetCustomAttributes<CustomAttribute>(method).Single();
-            Assert.AreEqual("VDimensions.NETStandard.Shim", typeof(CustomAttributeExtensions).Assembly.GetName().Name);
+            Assert.AreEqual(CustomAttributesAssemblyName, typeof(CustomAttributeExtensions).Assembly.GetName().Name);
             Assert.AreEqual("Method", a.Value);
         }
 
@@ -62,7 +68,7 @@ namespace VDimensions.NETStandard.Shim.Tests.Reflection
         {
             var method = typeof(GetCustomAttributesTests).GetMethod(nameof(DecoratedMethod), BindingFlags.NonPublic|BindingFlags.Static);
             var a = CustomAttributeExtensions.GetCustomAttributes(method).OfType<CustomAttribute>().Single();
-            Assert.AreEqual("VDimensions.NETStandard.Shim", typeof(CustomAttributeExtensions).Assembly.GetName().Name);
+            Assert.AreEqual(CustomAttributesAssemblyName, typeof(CustomAttributeExtensions).Assembly.GetName().Name);
             Assert.AreEqual("Method", a.Value);
         }
     }

@@ -2,7 +2,7 @@
 <Project>
   <!-- NuGet package properties -->
   <PropertyGroup>
-<!--    <ContentTargetFolders>content</ContentTargetFolders>-->
+    <!--<ContentTargetFolders>content</ContentTargetFolders>-->
     <PackageLicense>$(License)</PackageLicense>
     <PackageLicenseExpression>$(PackageLicense)</PackageLicenseExpression>
     <PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>
@@ -10,13 +10,6 @@
     <PackageTags Condition=" '$(PackageTags)' == '' ">$(AssemblyName)</PackageTags>
   </PropertyGroup>
 
-  <!-- Courtesy of NickStrupat, https://github.com/dotnet/docs/issues/12304#issuecomment-755672578 -->
-  <Target Name="PostClean" AfterTargets="Clean">
-    <RemoveDir Condition="Exists('$(BaseIntermediateOutputPath)')" Directories="$(BaseIntermediateOutputPath)" /><!-- obj -->
-    <RemoveDir Condition="Exists('$(BaseOutputPath)')" Directories="$(BaseOutputPath)" /><!-- bin -->
-  </Target>
-  
-  <!-- Dependencies -->
   <PropertyGroup Label="Dependency Package Versions">
     <VDimensionsMSBuildSdkVersion>0.6.*</VDimensionsMSBuildSdkVersion>
   </PropertyGroup>
@@ -28,63 +21,16 @@
     <PackageReference Update="VDimensions.MSBuild.Sdk.Versioning" Version="$(VDimensionsMSBuildSdkVersion)" />
     <PackageReference Update="VDimensions.MSBuild.Sdk.Multitargeting" Version="$(VDimensionsMSBuildSdkVersion)" />
   </ItemGroup>
+
+ 
+  <Import Project="$(RootPath)/submodules/vdimensions_msbuild_references/shims/LinqBridge.targets" />
+  <Import Project="$(RootPath)/submodules/vdimensions_msbuild_references/shims/NetLegacySupport.Tuple.targets" />
+  <Import Project="$(RootPath)/submodules/vdimensions_msbuild_references/shims/Portable.ConcurrentDictionary.targets" />
+  <Import Project="$(RootPath)/submodules/vdimensions_msbuild_references/system/System.Diagnostics.TraceSource.targets" />
+  <Import Project="$(RootPath)/submodules/vdimensions_msbuild_references/system/System.Threading.Tasks.targets" />
+  <Import Project="$(RootPath)/submodules/vdimensions_msbuild_references/system/System.Threading.Thread.targets" />
+  <Import Project="$(RootPath)/submodules/vdimensions_msbuild_references/system/System.Xml.XmlSerializer.targets" />
   
-  <Choose>
-    <When Condition="'$(TargetFramework)' == 'netstandard2.0'">
-      <ItemGroup>
-        <PackageReference Update="System.Diagnostics.TraceSource" Version="4.3" />
-        <PackageReference Update="System.Threading.Thread" Version="4.3" />
-        <PackageReference Update="System.Xml.XmlSerializer" Version="4.3" />
-      </ItemGroup>
-    </When>
-    <When Condition="'$(TargetFramework)' == 'netstandard1.6'">
-      <ItemGroup>
-        <PackageReference Update="System.Diagnostics.TraceSource" Version="4.3" />
-        <PackageReference Update="System.Threading.Thread" Version="4.3" />
-        <PackageReference Update="System.Xml.XmlSerializer" Version="4.3" />
-      </ItemGroup>
-    </When>
-    <When Condition="'$(TargetFramework)' == 'netstandard1.5'">
-      <ItemGroup>
-      </ItemGroup>
-    </When>
-    <When Condition="'$(TargetFramework)' == 'netstandard1.4'">
-      <ItemGroup>
-      </ItemGroup>
-    </When>
-    <When Condition="'$(TargetFramework)' == 'netstandard1.3'">
-      <ItemGroup>
-      </ItemGroup>
-    </When>
-    <When Condition="'$(TargetFramework)' == 'netstandard1.2'">
-      <ItemGroup>
-        <PackageReference Update="Portable.ConcurrentDictionary" Version="1.0.4" />
-      </ItemGroup>
-    </When>
-    <When Condition="'$(TargetFramework)' == 'netstandard1.1'">
-      <ItemGroup>
-        <PackageReference Update="Portable.ConcurrentDictionary" Version="1.0.4" />
-      </ItemGroup>
-    </When>
-    <When Condition="'$(TargetFramework)' == 'netstandard1.0'">
-      <ItemGroup>
-        <PackageReference Update="Portable.ConcurrentDictionary" Version="1.0.4" />
-      </ItemGroup>
-    </When>
-    <When Condition="'$(TargetFramework)' == 'net40'">
-      <ItemGroup>
-      </ItemGroup>
-    </When>
-    <When Condition="'$(TargetFramework)' == 'net35'">
-      <ItemGroup>
-        <PackageReference Update="System.Threading.Tasks.Unofficial" Version="3.1" />
-      </ItemGroup>
-    </When>
-    <When Condition="'$(TargetFramework)' == 'net20'">
-      <ItemGroup>
-        <PackageReference Update="LinqBridge" Version="1.3" />
-        <PackageReference Update="NetLegacySupport.Tuple" Version="1.1.1" />
-      </ItemGroup>
-    </When>
-  </Choose>
+  <Import Project="$(RootPath)/src/Directory.Test.props" Condition=" '$(IsTestProject)' == 'true' " />
+  <Import Project="$(RootPath)/src/Directory.Test.targets" Condition=" '$(IsTestProject)' == 'true' " />
 </Project>

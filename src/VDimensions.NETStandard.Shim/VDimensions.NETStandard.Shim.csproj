@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard1.6;netstandard1.5;netstandard1.4;netstandard1.3;netstandard1.2;netstandard1.1;netstandard1.0;net472;net471;net47;net462;net461;net46;net452;net451;net45;net40;net35;net20</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;netstandard1.6;netstandard1.5;netstandard1.4;netstandard1.3;netstandard1.2;netstandard1.1;netstandard1.0;net481;net48;net472;net471;net47;net462;net461;net46;net452;net451;net45;net40;net35;net20</TargetFrameworks>
   </PropertyGroup>
   
   <PropertyGroup>
@@ -12,94 +12,4 @@
       A library that provides API consistency between the different .NET framework versions.
     </Description>
   </PropertyGroup>
-
-  <!-- ReferenceSource files, conditionally referenced depending on target framework -->
-  <Choose>
-    <When Condition="'$(TargetFramework)' == 'netstandard2.0'">
-      <ItemGroup>
-      </ItemGroup>
-    </When>
-    <When Condition="'$(TargetFramework)' == 'netstandard1.6'">
-      <ItemGroup>
-      </ItemGroup>
-    </When>
-    <When Condition="'$(TargetFramework)' == 'netstandard1.5'">
-      <ItemGroup>
-      </ItemGroup>
-    </When>
-    <When Condition="'$(TargetFramework)' == 'netstandard1.4'">
-      <ItemGroup>
-      </ItemGroup>
-    </When>
-    <When Condition="'$(TargetFramework)' == 'netstandard1.3'">
-      <ItemGroup>
-      </ItemGroup>
-    </When>
-    <When Condition="'$(TargetFramework)' == 'netstandard1.2'">
-      <ItemGroup>
-      </ItemGroup>
-    </When>
-    <When Condition="'$(TargetFramework)' == 'netstandard1.1'">
-      <ItemGroup>
-      </ItemGroup>
-    </When>
-    <When Condition="'$(TargetFramework)' == 'netstandard1.0'">
-      <ItemGroup>
-      </ItemGroup>
-    </When>
-    <When Condition="'$(TargetFramework)' == 'net40'">
-      <ItemGroup>
-        <Compile Include="../../submodules/referencesource/mscorlib/system/collections/generic/ireadonlycollection.cs" Link="Collections\Generic\IReadOnlyCollection.cs" />
-        <Compile Include="../../submodules/referencesource/mscorlib/system/collections/generic/ireadonlydictionary.cs" Link="Collections\Generic\IReadOnlyDictionary.cs" />
-        <Compile Include="../../submodules/referencesource/mscorlib/system/collections/generic/ireadonlylist.cs" Link="Collections\Generic\IReadOnlyList.cs" />
-        <!-- 
-        <Compile Include="../../submodules/referencesource/mscorlib/system/reflection/introspectionextensions.cs" Link="Reflection\introspectionextensions.cs" />
-        <Compile Include="../../submodules/referencesource/mscorlib/system/reflection/ireflectabletype.cs" Link="Reflection\ireflectabletype.cs" />
-        <Compile Include="../../submodules/referencesource/mscorlib/system/reflection/typeinfo.cs" Link="Reflection\typeinfo.cs" /> 
-         -->
-      </ItemGroup>
-    </When>
-    <When Condition="'$(TargetFramework)' == 'net35'">
-      <ItemGroup>
-        <Compile Include="../../submodules/referencesource/mscorlib/system/collections/generic/ireadonlycollection.cs" Link="Collections\Generic\IReadOnlyCollection.cs" />
-        <Compile Include="../../submodules/referencesource/mscorlib/system/collections/generic/ireadonlydictionary.cs" Link="Collections\Generic\IReadOnlyDictionary.cs" />
-        <Compile Include="../../submodules/referencesource/mscorlib/system/collections/generic/ireadonlylist.cs" Link="Collections\Generic\IReadOnlyList.cs" />
-        <Compile Include="../../submodules/referencesource/mscorlib/system/diagnostics/contracts/contracts.cs" Link="Diagnostics\Contracts\contracts.cs" />
-        <!-- 
-        <Compile Include="../../submodules/referencesource/mscorlib/system/reflection/introspectionextensions.cs" Link="Reflection\introspectionextensions.cs" />
-        <Compile Include="../../submodules/referencesource/mscorlib/system/reflection/ireflectabletype.cs" Link="Reflection\ireflectabletype.cs" />
-        <Compile Include="../../submodules/referencesource/mscorlib/system/reflection/typeinfo.cs" Link="Reflection\typeinfo.cs" /> 
-         -->
-      </ItemGroup>
-    </When>
-    <When Condition="'$(TargetFramework)' == 'net20'">
-      <PropertyGroup>
-        <DefineConstants>$(DefineConstants);FEATURE_RANDOMIZED_STRING_HASHING</DefineConstants>
-        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-      </PropertyGroup>
-      
-      <ItemGroup>
-        <Compile Include="../../submodules/referencesource/mscorlib/system/collections/generic/ireadonlycollection.cs" Link="Collections\Generic\IReadOnlyCollection.cs" />
-        <Compile Include="../../submodules/referencesource/mscorlib/system/collections/generic/ireadonlydictionary.cs" Link="Collections\Generic\IReadOnlyDictionary.cs" />
-        <Compile Include="../../submodules/referencesource/mscorlib/system/collections/generic/ireadonlylist.cs" Link="Collections\Generic\IReadOnlyList.cs" />
-        <!-- 
-        <Compile Include="../../submodules/referencesource/mscorlib/system/collections/hashtable.cs" Link="Collections\HashTable.cs" />
-        <Compile Include="../../submodules/referencesource/mscorlib/system/collections/generic/ireadonlycollection.cs" Link="Collections\Generic\IReadOnlyCollection.cs" />
-        <Compile Include="../../submodules/referencesource/System/compmod/system/collections/generic/iset.cs" Link="Collections\Generic\ISet.cs" />
-        -->
-        <!-- 
-        <Compile Include="../../submodules/referencesource/System.Core/System/Collections/Generic/BitHelper.cs" Link="Collections\Generic\BitHelper.cs" />
-        <Compile Include="../../submodules/referencesource/System.Core/System/Collections/Generic/HashSet.cs" Link="Collections\Generic\HashSet.cs" />
-        <Compile Include="../../submodules/referencesource/System.Core/System/Collections/Generic/HashSetDebugView.cs" Link="Collections\Generic\HashSetDebugView.cs" />
-        <Compile Include="../../submodules/referencesource/System.Core/System/Collections/Generic/HashSetEqualityComparer.cs" Link="Collections\Generic\HashSetEqualityComparer.cs" />
-         -->
-        <Compile Include="../../submodules/referencesource/mscorlib/system/diagnostics/contracts/contracts.cs" Link="Diagnostics\Contracts\contracts.cs" />
-        <!-- 
-        <Compile Include="../../submodules/referencesource/mscorlib/system/reflection/introspectionextensions.cs" Link="Reflection\introspectionextensions.cs" />
-        <Compile Include="../../submodules/referencesource/mscorlib/system/reflection/ireflectabletype.cs" Link="Reflection\ireflectabletype.cs" />
-        <Compile Include="../../submodules/referencesource/mscorlib/system/reflection/typeinfo.cs" Link="Reflection\typeinfo.cs" /> 
-         -->
-      </ItemGroup>
-    </When>
-  </Choose>
 </Project>
