@@ -61,3 +61,13 @@ for:
       - provider: NuGet
         api_key:
           secure: Zi9RhxSllsk8XZdNSb61Hl66lHtpbpr3Uu+Y1Ri6+cB5Kiu1qyfOGuKhsooTXePN
+
+  - version: 0.1-{branch}.{build}
+    branches:
+      only:
+        - dev
+    environment:
+      CONFIGURATION: Debug
+    artifacts:
+    cache:
+    deploy: off
