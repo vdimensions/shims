@@ -30,6 +30,12 @@ test:
     only:
       - '**\*.tests.dll'
 
+branches:
+  only:
+    - master
+    - /alpha|beta|preview|rc|snapshot/
+    - dev
+
 for:
   - version: 0.1.{build}
     branches:
@@ -41,7 +47,7 @@ for:
     deploy:
       - provider: NuGet
         api_key:
-          secure: MJwTXTK4bJYUM2IPHP6TtXmmfVhVS1vpktnPOCDG6pQOs6pVbF+rFGShDfgsr6L8
+          secure: Zi9RhxSllsk8XZdNSb61Hl66lHtpbpr3Uu+Y1Ri6+cB5Kiu1qyfOGuKhsooTXePN
         on:
           branch: master
 
@@ -54,4 +60,4 @@ for:
     deploy:
       - provider: NuGet
         api_key:
-          secure: MJwTXTK4bJYUM2IPHP6TtXmmfVhVS1vpktnPOCDG6pQOs6pVbF+rFGShDfgsr6L8
+          secure: Zi9RhxSllsk8XZdNSb61Hl66lHtpbpr3Uu+Y1Ri6+cB5Kiu1qyfOGuKhsooTXePN
