@@ -83,6 +83,10 @@
   <Import Project="$(RootPath)/submodules/vdimensions_msbuild_references/system/System.Xml.XmlSerializer.props" />
 
   <Choose>
+    <When Condition="'$(TargetFramework)' == 'netstandard2.1'">
+      <PropertyGroup>
+      </PropertyGroup>
+    </When>
     <When Condition="'$(TargetFramework)' == 'netstandard2.0'">
       <PropertyGroup>
       </PropertyGroup>

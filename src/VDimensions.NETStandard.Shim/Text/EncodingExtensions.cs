@@ -3,6 +3,7 @@
     /// A static class containing extension methods common to the Encoding class.
     public static class EncodingExtensions
     {
+        #if NETSTANDARD && !NETSTANDARD1_3_OR_NEWER
         /// <summary>
         /// Decodes a sequence of bytes from the specified byte array into a string
         /// </summary>
@@ -26,7 +27,6 @@
         /// for complete explanation)-and-System.Text.Encoding.DecoderFallback
         /// is set to System.Text.DecoderExceptionFallback.
         /// </exception>
-        #if NETSTANDARD && !NETSTANDARD1_3_OR_NEWER
         public static string GetString(this Encoding encoding, byte[] bytes)
         {
             if (encoding == null)

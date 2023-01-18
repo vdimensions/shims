@@ -21,16 +21,9 @@
     <PackageReference Update="VDimensions.MSBuild.Sdk.Versioning" Version="$(VDimensionsMSBuildSdkVersion)" />
     <PackageReference Update="VDimensions.MSBuild.Sdk.Multitargeting" Version="$(VDimensionsMSBuildSdkVersion)" />
   </ItemGroup>
-
- 
-  <Import Project="$(RootPath)/submodules/vdimensions_msbuild_references/shims/LinqBridge.targets" />
-  <Import Project="$(RootPath)/submodules/vdimensions_msbuild_references/shims/NetLegacySupport.Tuple.targets" />
-  <Import Project="$(RootPath)/submodules/vdimensions_msbuild_references/shims/Portable.ConcurrentDictionary.targets" />
-  <Import Project="$(RootPath)/submodules/vdimensions_msbuild_references/system/System.Diagnostics.TraceSource.targets" />
-  <Import Project="$(RootPath)/submodules/vdimensions_msbuild_references/system/System.Threading.Tasks.targets" />
-  <Import Project="$(RootPath)/submodules/vdimensions_msbuild_references/system/System.Threading.Thread.targets" />
-  <Import Project="$(RootPath)/submodules/vdimensions_msbuild_references/system/System.Xml.XmlSerializer.targets" />
   
   <Import Project="$(RootPath)/src/Directory.Test.props" Condition=" '$(IsTestProject)' == 'true' " />
   <Import Project="$(RootPath)/src/Directory.Test.targets" Condition=" '$(IsTestProject)' == 'true' " />
+ 
+  <Import Project="$(RootPath)/submodules/vdimensions_msbuild_references/VDimensions.MSBuild.References.targets" />
 </Project>
