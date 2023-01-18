@@ -18,6 +18,8 @@ namespace VDimensions.NETStandard.Shim.Tests.Reflection
 
         #if FX_CUSTOM_ATTRIBUTES
         private const string CustomAttributesAssemblyName = "VDimensions.NETStandard.Shim";
+        #elif NET5_0_OR_NEWER || NETCOREAPP
+        private const string CustomAttributesAssemblyName = "System.Private.CoreLib";
         #else
         private const string CustomAttributesAssemblyName = "mscorlib";
         #endif

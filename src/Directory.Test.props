@@ -22,6 +22,9 @@
     </When>
   </Choose>
   
-  <Import Project="$(RootPath)/submodules/vdimensions_msbuild_references/nunit/NUnit.props" />
-  <Import Project="$(RootPath)/submodules/vdimensions_msbuild_references/nunit/NUnit3TestAdapter.props" />
+  <ItemGroup>
+    <PackageReference Include="NUnit" />
+    <PackageReference Include="NUnit3TestAdapter" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+  </ItemGroup>
 </Project>
