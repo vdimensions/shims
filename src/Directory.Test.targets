@@ -12,7 +12,4 @@
       </ItemGroup>
     </Otherwise>
   </Choose>
-  
-  <Import Project="$(RootPath)/submodules/vdimensions_msbuild_references/nunit/NUnit.targets" />
-  <Import Project="$(RootPath)/submodules/vdimensions_msbuild_references/nunit/NUnit3TestAdapter.targets" />
 </Project>
