@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <Choose>
+    <When Condition=" '$(ShimsPath)' != '' ">
+      <ItemGroup>
+        <PackageReference Remove="VDimensions.Shims.NETStandard" />
+        <ProjectReference Include="$(ShimsPath)\src\VDimensions.Shims.NETStandard\VDimensions.Shims.NETStandard.csproj" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <PackageReference Include="VDimensions.Shims.NETStandard" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+</Project>

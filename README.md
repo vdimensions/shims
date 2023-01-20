@@ -1,3 +1,10 @@
+This project is being renamed to VDimensions.Shims 
+--------------------------------------------------
+Make sure you update your remote url
+github: https://github.com/vdimensions/shims
+gitlab: https://gitlab.com/vdimensions/frameworks/shims/vdimensions.shims
+
+===
 # NETStandard.Shim
 
 This project is an attempt to provide API consistency between the different .NET framework versions and to avoid the `#if-#else-#endif` preprocessor hell.

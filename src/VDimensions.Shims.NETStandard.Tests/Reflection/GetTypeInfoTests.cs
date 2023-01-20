@@ -1,7 +1,7 @@
 ﻿// using System.Reflection;
 // using NUnit.Framework;
 //
-// namespace VDimensions.NETStandard.Shim.Tests.Reflection
+// namespace VDimensions.Shims.NETStandard.Tests.Reflection
 // {
 //     public class GetTypeInfoTests
 //     {
