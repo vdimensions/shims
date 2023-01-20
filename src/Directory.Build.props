@@ -27,7 +27,7 @@
 
   <PropertyGroup Label="Versioning">
     <VersionMajor>0</VersionMajor>
-    <VersionMinor>1</VersionMinor>
+    <VersionMinor>2</VersionMinor>
     <VersionSuffix Condition=" '$(VersionSuffix)' == '' ">snapshot</VersionSuffix>
   </PropertyGroup>
 
@@ -43,6 +43,7 @@
 
   <PropertyGroup Label="Local Project References">
     <RootPath>$(MSBuildThisFileDirectory)\..</RootPath>
+    <ShimsPath>$(RootPath)</ShimsPath>
   </PropertyGroup>
 
   <PropertyGroup Label="Packaging">
@@ -72,15 +73,15 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-  </ItemGroup>
 
-  <Import Project="$(RootPath)/submodules/vdimensions_msbuild_references/shims/LinqBridge.props" />
-  <Import Project="$(RootPath)/submodules/vdimensions_msbuild_references/shims/NetLegacySupport.Tuple.props" />
-  <Import Project="$(RootPath)/submodules/vdimensions_msbuild_references/shims/Portable.ConcurrentDictionary.props" />
-  <Import Project="$(RootPath)/submodules/vdimensions_msbuild_references/system/System.Diagnostics.TraceSource.props" />
-  <Import Project="$(RootPath)/submodules/vdimensions_msbuild_references/system/System.Threading.Tasks.props" />
-  <Import Project="$(RootPath)/submodules/vdimensions_msbuild_references/system/System.Threading.Thread.props" />
-  <Import Project="$(RootPath)/submodules/vdimensions_msbuild_references/system/System.Xml.XmlSerializer.props" />
+    <PackageReference Include="LinqBridge" />
+    <PackageReference Include="NetLegacySupport.Tuple" />
+    <PackageReference Include="Portable.ConcurrentDictionary" />
+    <PackageReference Include="System.Diagnostics.TraceSource" />
+    <PackageReference Include="System.Threading.Tasks.Unofficial" />
+    <PackageReference Include="System.Threading.Thread" />
+    <PackageReference Include="System.Xml.XmlSerializer" />
+  </ItemGroup>
 
   <Choose>
     <When Condition="'$(TargetFramework)' == 'netstandard2.1'">

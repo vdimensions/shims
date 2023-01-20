@@ -1,6 +1,6 @@
 using System;
 
-namespace VDimensions.NETStandard.Shim.Tests.Reflection
+namespace VDimensions.Shims.NETStandard.Tests.Reflection
 {
     [AttributeUsage(AttributeTargets.All, Inherited = false, AllowMultiple = true)]
     sealed class CustomAttribute : Attribute

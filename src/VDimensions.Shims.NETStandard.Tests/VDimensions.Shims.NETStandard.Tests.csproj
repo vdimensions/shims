@@ -4,9 +4,8 @@
     <TargetFrameworks>net6.0;netcoreapp3.1;net461;net45;net40;net35;net20</TargetFrameworks>
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
+    <RootNamespace>VDimensions.Shims.NETStandard.Tests</RootNamespace>
   </PropertyGroup>
   
-  <ItemGroup>
-    <ProjectReference Include="..\VDimensions.NETStandard.Shim\VDimensions.NETStandard.Shim.csproj" />
-  </ItemGroup>
+  <Import Project="$(RootPath)/ref/Reference.VDimensions.Shims.NETStandard.targets" />
 </Project>

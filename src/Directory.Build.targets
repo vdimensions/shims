@@ -10,20 +10,14 @@
     <PackageTags Condition=" '$(PackageTags)' == '' ">$(AssemblyName)</PackageTags>
   </PropertyGroup>
 
-  <PropertyGroup Label="Dependency Package Versions">
-    <VDimensionsMSBuildSdkVersion>0.6.*</VDimensionsMSBuildSdkVersion>
-  </PropertyGroup>
-
   <ItemGroup Label="Dependency Packages">
     <PackageReference Update="Microsoft.SourceLink.GitHub" Version="1.0.0" />
-    <PackageReference Update="VDimensions.MSBuild.Sdk.Defaults" Version="$(VDimensionsMSBuildSdkVersion)" />
-    <PackageReference Update="VDimensions.MSBuild.Sdk.Copyright" Version="$(VDimensionsMSBuildSdkVersion)" />
-    <PackageReference Update="VDimensions.MSBuild.Sdk.Versioning" Version="$(VDimensionsMSBuildSdkVersion)" />
-    <PackageReference Update="VDimensions.MSBuild.Sdk.Multitargeting" Version="$(VDimensionsMSBuildSdkVersion)" />
   </ItemGroup>
-  
-  <Import Project="$(RootPath)/src/Directory.Test.props" Condition=" '$(IsTestProject)' == 'true' " />
-  <Import Project="$(RootPath)/src/Directory.Test.targets" Condition=" '$(IsTestProject)' == 'true' " />
+
+  <ImportGroup Condition=" '$(IsTestProject)' == 'true' ">
+    <Import Project="$(RootPath)/src/Directory.Test.props" />
+    <Import Project="$(RootPath)/src/Directory.Test.targets"/>
+  </ImportGroup>
  
   <Import Project="$(RootPath)/submodules/vdimensions_msbuild_references/VDimensions.MSBuild.References.targets" />
 </Project>

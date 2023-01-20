@@ -1,11 +1,11 @@
 using System.Linq;
 using System.Reflection;
-using VDimensions.NETStandard.Shim.Tests.Reflection;
 using NUnit.Framework;
+using VDimensions.Shims.NETStandard.Tests.Reflection;
 
 [assembly:Custom(Value = "Assembly")]
 
-namespace VDimensions.NETStandard.Shim.Tests.Reflection
+namespace VDimensions.Shims.NETStandard.Tests.Reflection
 {
     [Custom(Value = "Class")]
     public class GetCustomAttributesTests
@@ -16,8 +16,8 @@ namespace VDimensions.NETStandard.Shim.Tests.Reflection
         [Custom(Value = "Method")]
         private static void DecoratedMethod() { }
 
-        #if FX_CUSTOM_ATTRIBUTES
-        private const string CustomAttributesAssemblyName = "VDimensions.NETStandard.Shim";
+        #if NETFRAMEWORK && !NET45_OR_NEWER
+        private const string CustomAttributesAssemblyName = "VDimensions.Shims.NETStandard";
         #elif NET5_0_OR_NEWER || NETCOREAPP
         private const string CustomAttributesAssemblyName = "System.Private.CoreLib";
         #else
