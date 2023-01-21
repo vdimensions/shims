@@ -1,4 +1,5 @@
-﻿#if NETSTANDARD && !NETSTANDARD2_0_OR_NEWER
+﻿#if POLYFILL_CUSTOM_ATTRIBUTES
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace System.Reflection
@@ -6,7 +7,9 @@ namespace System.Reflection
     /// <summary>
     /// A static class to provide the functionality of `GetCustomAttributes` method.
     /// </summary>
-    public static class CustomAttributeShim
+    [SuppressMessage("ReSharper", "UnusedType.Global")]
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
+    public static class CustomAttributePolyfill
     {
         /// <summary>
         /// Gets all the custom attributes for this <see cref="Assembly">assembly</see>.
