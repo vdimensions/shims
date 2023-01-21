@@ -94,45 +94,52 @@
     </When>
     <When Condition="'$(TargetFramework)' == 'netstandard1.6'">
       <PropertyGroup>
+        <DefineConstants>$(DefineConstants); POLYFILL_CUSTOM_ATTRIBUTES</DefineConstants>
       </PropertyGroup>
     </When>
     <When Condition="'$(TargetFramework)' == 'netstandard1.5'">
       <PropertyGroup>
+        <DefineConstants>$(DefineConstants); POLYFILL_CUSTOM_ATTRIBUTES</DefineConstants>
       </PropertyGroup>
     </When>
     <When Condition="'$(TargetFramework)' == 'netstandard1.4'">
       <PropertyGroup>
+        <DefineConstants>$(DefineConstants); POLYFILL_CUSTOM_ATTRIBUTES</DefineConstants>
       </PropertyGroup>
     </When>
     <When Condition="'$(TargetFramework)' == 'netstandard1.3'">
       <PropertyGroup>
+        <DefineConstants>$(DefineConstants); POLYFILL_CUSTOM_ATTRIBUTES</DefineConstants>
       </PropertyGroup>
     </When>
     <When Condition="'$(TargetFramework)' == 'netstandard1.2'">
       <PropertyGroup>
+        <DefineConstants>$(DefineConstants); POLYFILL_CUSTOM_ATTRIBUTES</DefineConstants>
       </PropertyGroup>
     </When>
     <When Condition="'$(TargetFramework)' == 'netstandard1.1'">
       <PropertyGroup>
+        <DefineConstants>$(DefineConstants); POLYFILL_CUSTOM_ATTRIBUTES</DefineConstants>
       </PropertyGroup>
     </When>
     <When Condition="'$(TargetFramework)' == 'netstandard1.0'">
       <PropertyGroup>
+        <DefineConstants>$(DefineConstants); POLYFILL_CUSTOM_ATTRIBUTES</DefineConstants>
       </PropertyGroup>
     </When>
     <When Condition="'$(TargetFramework)' == 'net40'">
       <PropertyGroup>
-        <DefineConstants>$(DefineConstants);FX_READONLY_COLLECTION;FX_CUSTOM_ATTRIBUTES</DefineConstants>
+        <DefineConstants>$(DefineConstants); SHIM_CUSTOM_ATTRIBUTES; SHIM_READONLY_COLLECTIONS</DefineConstants>
       </PropertyGroup>
     </When>
     <When Condition="'$(TargetFramework)' == 'net35'">
       <PropertyGroup>
-        <DefineConstants>$(DefineConstants);FX_READONLY_COLLECTION;FX_CUSTOM_ATTRIBUTES</DefineConstants>
+        <DefineConstants>$(DefineConstants); SHIM_CUSTOM_ATTRIBUTES; SHIM_READONLY_COLLECTIONS; SHIM_SET</DefineConstants>
       </PropertyGroup>
     </When>
     <When Condition="'$(TargetFramework)' == 'net20'">
       <PropertyGroup>
-        <DefineConstants>$(DefineConstants);FX_READONLY_COLLECTION;FX_CUSTOM_ATTRIBUTES</DefineConstants>
+        <DefineConstants>$(DefineConstants); SHIM_CUSTOM_ATTRIBUTES; SHIM_HASHSET; SHIM_READONLY_COLLECTIONS</DefineConstants>
       </PropertyGroup>
     </When>
   </Choose>
