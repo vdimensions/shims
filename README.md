@@ -1,23 +1,16 @@
-This project is being renamed to VDimensions.Shims 
---------------------------------------------------
-Make sure you update your remote url
-* __GitHub__: https://github.com/vdimensions/shims
-* __GitLab__: https://gitlab.com/vdimensions/frameworks/shims/vdimensions.shims
-
-===
-# NETStandard.Shim
+# VDimensions.Shims
 
 This project is an attempt to provide API consistency between the different .NET framework versions and to avoid the `#if-#else-#endif` preprocessor hell.
 
 This library refers the .NET reference source repository and 3rd party libraries to obtain implementations for features that are missing in earlier framework releases. See the [Licensing](#licensing) section for more information.
 
-Some of the features that this library brings:
+The project is divided into libraries, each providing different aspects that are normally found in .NETStandrd-compliant version of the .NET framework. The below table provides more information on how the shimmed features are organized:
 
-* _[in progress]_ Reflection API consistency between .NET Standard 2.0 and earlier .NET Standard versions (1.0 - 1.5) and .NET Framework (v3.5 - v4.0)
-* Exposed `System.Linq.ExpressionVisitor` as a public inheritable class in .NET Framework v3.5
-* Exposes Linq Enumerable methods in `net20`
-* Enables support for the `System.Tuple` types in `net20`, `net35` and `net40`
-* Exposes the `System.Concurrent.ConcurrentDictionary<,>` type for use in .NETStandard 1.0, 1.1 and 1.2
+|Project|Descrption|
+|-|-|
+|[`VDimensions.Shims.NETStandard`](src/VDimensions.Shims.NETStandard/README.md)|General polyfills for APIs available in the core libraries of .NET|
+|[`VDimensions.Shims.Collections.Immutable`](src/VDimensions.Shims.Collections.Immutable//README.md)|Backport of the `System.Collections.Immutable` package|
+
 
 ## Purpose and Reasoning
 
@@ -51,15 +44,15 @@ Over the years, popular 3rd party libraries have attempted to address the challe
 
 Below is a list of 3rd party libraries that have been chosen as depedencies of this project. The reasons for these choices were that they play nice (enough) with each other, and also, their licenses allow combining them together.
 
- - [LinqBridge](https://www.nuget.org/packages/LinqBridge/), licensed under the [BSD 3-Clause License](https://github.com/atifaziz/LINQBridge/blob/master/COPYING.txt)  
+* [LinqBridge](https://www.nuget.org/packages/LinqBridge/), licensed under the [BSD 3-Clause License](https://github.com/atifaziz/LINQBridge/blob/master/COPYING.txt)  
    This library has remained stable over the years and a useful extension for compatibility with net35
- - [NetLegacySupport.Tuple](https://www.nuget.org/packages/NetLegacySupport.Tuple/), licensed under the [MIT License](https://github.com/SaladLab/NetLegacySupport/blob/master/LICENSE)  
- - [Portable.ConcurrentDictionary](https://www.nuget.org/packages/Portable.ConcurrentDictionary/), licensed under [MIT License](https://raw.githubusercontent.com/StefH/Portable.ConcurrentDictionary/master/LICENSE)
- - [System.Threading.Tasks.Unofficial](https://www.nuget.org/packages/System.Threading.Tasks.Unofficial/). Various licenses available:
-   - Apache-2.0 License
-   - GPL-MIT License
-   - LGPL-2.0 License
-   - MIT License
-   - MS-PL License  
+* [NetLegacySupport.Tuple](https://www.nuget.org/packages/NetLegacySupport.Tuple/), licensed under the [MIT License](https://github.com/SaladLab/NetLegacySupport/blob/master/LICENSE)  
+* [Portable.ConcurrentDictionary](https://www.nuget.org/packages/Portable.ConcurrentDictionary/), licensed under [MIT License](https://raw.githubusercontent.com/StefH/Portable.ConcurrentDictionary/master/LICENSE)
+* [System.Threading.Tasks.Unofficial](https://www.nuget.org/packages/System.Threading.Tasks.Unofficial/). Various licenses available:
+  * Apache-2.0 License
+  * GPL-MIT License
+  * LGPL-2.0 License
+  * MIT License
+  * MS-PL License  
 
-   We favored this library over the official TPL library from Microsoft, because its API surface was richer and closer to a complete polyfill.
+  We favored this library over the official TPL library from Microsoft, because its API surface was richer and closer to a complete polyfill.

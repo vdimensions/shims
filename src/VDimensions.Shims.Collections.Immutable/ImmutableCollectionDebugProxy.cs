@@ -18,7 +18,7 @@ namespace System.Collections.Immutable
         /// Initializes a new instance of the <see cref="ImmutableCollectionDebugProxy{TCollection,T}" /> class.
         /// </summary>
         /// <param name="collection">The list to display in the debugger</param>
-        public ImmutableCollectionDebugProxy(TCollection collection)
+        protected ImmutableCollectionDebugProxy(TCollection collection)
         {
             Collection = collection ?? throw new ArgumentNullException(nameof(collection));
         }
