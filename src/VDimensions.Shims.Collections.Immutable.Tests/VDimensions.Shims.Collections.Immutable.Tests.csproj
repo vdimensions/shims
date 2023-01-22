@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net45;net40;net35;net20</TargetFrameworks>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <RootNamespace>VDimensions.Shims.Collections.Immutable.Tests</RootNamespace>
+  </PropertyGroup>
+  
+  <Import Project="$(RootPath)/ref/Reference.VDimensions.Shims.Collections.Immutable.targets" />
+</Project>
