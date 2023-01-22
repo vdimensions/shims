@@ -26,6 +26,7 @@ namespace System.Collections.Immutable
         [DebuggerTypeProxy(typeof (ImmutableList<>.Builder.DebuggerProxy))]
         [SuppressMessage("ReSharper", "ForCanBeConvertedToForeach")]
         [SuppressMessage("ReSharper", "RedundantExtendsListEntry")]
+        [SuppressMessage("ReSharper", "UnusedMember.Global")]
         public sealed partial class Builder 
             : IList<T>
             , ICollection<T>
@@ -38,10 +39,10 @@ namespace System.Collections.Immutable
             , IReadOnlyList<T>
             , IReadOnlyCollection<T>
         {
+            private readonly object _syncRoot = new object();
             private readonly List<T> _impl;
             private ImmutableList<T> _immutable;
             private int _version;
-            private object _syncRoot;
 
             internal Builder(ImmutableList<T> immutableList)
             {
@@ -82,7 +83,13 @@ namespace System.Collections.Immutable
             public T this[int index]
             {
                 get => _impl[index];
-                set => UpdateVersion(_impl[index] = value);
+                set
+                {
+                    lock (_syncRoot)
+                    {
+                        UpdateVersion(_impl[index] = value);
+                    }
+                }
             }
 
             /// <summary>Gets the element in the collection at a given index.</summary>
@@ -98,8 +105,11 @@ namespace System.Collections.Immutable
             /// </summary>
             public void Insert(int index, T item)
             {
-                _impl.Insert(index, item);
-                UpdateVersion<object>(null);
+                lock (_syncRoot)
+                {
+                    _impl.Insert(index, item);
+                    UpdateVersion<object>(null);
+                }
             }
 
             /// <summary>
@@ -107,8 +117,11 @@ namespace System.Collections.Immutable
             /// </summary>
             public void RemoveAt(int index)
             {
-                _impl.RemoveAt(index);
-                UpdateVersion<object>(null);
+                lock (_syncRoot)
+                {
+                    _impl.RemoveAt(index);
+                    UpdateVersion<object>(null);
+                }
             }
 
             /// <summary>
@@ -116,8 +129,11 @@ namespace System.Collections.Immutable
             /// </summary>
             public void Add(T item)
             {
-                _impl.Add(item);
-                UpdateVersion<object>(null);
+                lock (_syncRoot)
+                {
+                    _impl.Add(item);
+                    UpdateVersion<object>(null);
+                }
             }
 
             /// <summary>
@@ -125,8 +141,15 @@ namespace System.Collections.Immutable
             /// </summary>
             public void Clear()
             {
-                _impl.Clear();
-                UpdateVersion<object>(null);
+                if (Count == 0)
+                {
+                    return;
+                }
+                lock (_syncRoot)
+                {
+                    _impl.Clear();
+                    UpdateVersion<object>(null);
+                }
             }
 
             /// <summary>
@@ -139,15 +162,17 @@ namespace System.Collections.Immutable
             /// </summary>
             public bool Remove(T item)
             {
-                var index = IndexOf(item);
-                if (index < 0)
+                lock (_syncRoot)
                 {
-                    return false;
+                    var index = IndexOf(item);
+                    if (index < 0)
+                    {
+                        return false;
+                    }
+                    var count = _impl.Count;
+                    _impl.RemoveAt(index);
+                    return UpdateVersion(_impl.Count < count);
                 }
-
-                var count = _impl.Count;
-                _impl.RemoveAt(index);
-                return UpdateVersion(_impl.Count < count);
             }
 
             /// <summary>
@@ -673,9 +698,12 @@ namespace System.Collections.Immutable
                 {
                     throw new ArgumentNullException(nameof(items));
                 }
-                
-                _impl.AddRange(items);
-                UpdateVersion<object>(null);
+
+                lock (_syncRoot)
+                {
+                    _impl.AddRange(items);
+                    UpdateVersion<object>(null);
+                }
             }
 
             /// <summary>
@@ -692,16 +720,19 @@ namespace System.Collections.Immutable
             /// </param>
             public void InsertRange(int index, IEnumerable<T> items)
             {
-                if (index < 0 || index > Count)
-                {
-                    throw new ArgumentOutOfRangeException(nameof(index));
-                }
                 if (items == null)
                 {
                     throw new ArgumentNullException(nameof(items));
                 }
-                _impl.InsertRange(index, items);
-                UpdateVersion<object>(null);
+                lock (_syncRoot)
+                {
+                    if (index < 0 || index > Count)
+                    {
+                        throw new ArgumentOutOfRangeException(nameof(index));
+                    }
+                    _impl.InsertRange(index, items);
+                    UpdateVersion<object>(null);
+                }
             }
 
             /// <summary>
@@ -721,7 +752,11 @@ namespace System.Collections.Immutable
                 {
                     throw new ArgumentNullException(nameof(match));
                 }
-                return UpdateVersion(_impl.RemoveAll(match));
+
+                lock (_syncRoot)
+                {
+                    return UpdateVersion(_impl.RemoveAll(match));
+                }
             }
 
             /// <summary>
@@ -729,8 +764,11 @@ namespace System.Collections.Immutable
             /// </summary>
             public void Reverse()
             {
-                _impl.Reverse();
-                UpdateVersion<object>(null);
+                lock (_syncRoot)
+                {
+                    _impl.Reverse();
+                    UpdateVersion<object>(null);
+                }
             }
 
             /// <summary>
@@ -740,8 +778,11 @@ namespace System.Collections.Immutable
             /// <param name="count">The number of elements in the range to reverse.</param>
             public void Reverse(int index, int count)
             {
-                Helper.Reverse(_impl, index, count);
-                UpdateVersion<object>(null);
+                lock (_syncRoot)
+                {
+                    Helper.Reverse(_impl, index, count);
+                    UpdateVersion<object>(null);
+                }
             }
 
             /// <summary>
@@ -750,8 +791,11 @@ namespace System.Collections.Immutable
             /// </summary>
             public void Sort()
             {
-                _impl.Sort();
-                UpdateVersion<object>(null);
+                lock (_syncRoot)
+                {
+                    _impl.Sort();
+                    UpdateVersion<object>(null);
+                }
             }
 
             /// <summary>
@@ -768,8 +812,12 @@ namespace System.Collections.Immutable
                 {
                     throw new ArgumentNullException(nameof(comparison));
                 }
-                _impl.Sort(comparison);
-                UpdateVersion<object>(null);
+
+                lock (_syncRoot)
+                {
+                    _impl.Sort(comparison);
+                    UpdateVersion<object>(null);
+                }
             }
 
             /// <summary>
@@ -782,8 +830,11 @@ namespace System.Collections.Immutable
             /// </param>
             public void Sort(IComparer<T> comparer)
             {
-                _impl.Sort(comparer);
-                UpdateVersion<object>(null);
+                lock (_syncRoot)
+                {
+                    _impl.Sort(comparer);
+                    UpdateVersion<object>(null);
+                }
             }
 
             /// <summary>
@@ -800,8 +851,11 @@ namespace System.Collections.Immutable
             /// </param>
             public void Sort(int index, int count, IComparer<T> comparer)
             {
-                Helper.Sort(_impl, index, count, comparer ?? Comparer<T>.Default);
-                UpdateVersion<object>(null);
+                lock (_syncRoot)
+                {
+                    Helper.Sort(_impl, index, count, comparer ?? Comparer<T>.Default);
+                    UpdateVersion<object>(null);
+                }
             }
 
             /// <summary>
@@ -981,24 +1035,14 @@ namespace System.Collections.Immutable
             /// </summary>
             /// <returns>true if access to the <see cref="T:System.Collections.ICollection" /> is synchronized (thread safe); otherwise, false.</returns>
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-            bool ICollection.IsSynchronized => false;
+            bool ICollection.IsSynchronized => true;
 
             /// <summary>
             /// Gets an object that can be used to synchronize access to the <see cref="T:System.Collections.ICollection" />.
             /// </summary>
             /// <returns>An object that can be used to synchronize access to the <see cref="T:System.Collections.ICollection" />.</returns>
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-            object ICollection.SyncRoot
-            {
-                get
-                {
-                    if (_syncRoot == null)
-                    {
-                        Interlocked.CompareExchange<object>(ref _syncRoot, new object(), null);
-                    }
-                    return _syncRoot;
-                }
-            }
+            object ICollection.SyncRoot => _syncRoot;
         }
     }
 }
