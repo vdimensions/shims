@@ -6,7 +6,9 @@ namespace VDimensions.NETStandard.Shim.Tests.Collections.Concurrent
     [TestFixture]
     public class ConcurrentDictionaryTest
     {
-        #if NETSTANDARD1_0
+        #if NETSTANDARD
+        private const string ConcurrentDictionaryAssemblyName = "System.Collections.Concurrent";
+        #elif NETSTANDARD1_0
         private const string ConcurrentDictionaryAssemblyName = "Portable.ConcurrentDictionary";
         #elif NET35
         private const string ConcurrentDictionaryAssemblyName = "System.Threading.Tasks.NET35";
@@ -14,7 +16,7 @@ namespace VDimensions.NETStandard.Shim.Tests.Collections.Concurrent
         private const string ConcurrentDictionaryAssemblyName = "mscorlib";
         #endif
         
-        #if NET35_OR_NEWER
+        #if NETSTANDARD || NET35_OR_NEWER
         [Test]
         public void TestAssemblyLevelGetCustomAttributeGenericCall()
         {
