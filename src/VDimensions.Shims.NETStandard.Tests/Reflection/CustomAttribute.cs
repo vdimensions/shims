@@ -3,7 +3,7 @@ using System;
 namespace VDimensions.Shims.NETStandard.Tests.Reflection
 {
     [AttributeUsage(AttributeTargets.All, Inherited = false, AllowMultiple = true)]
-    sealed class CustomAttribute : Attribute
+    internal sealed class CustomAttribute : Attribute
     {
         public CustomAttribute()
         {
