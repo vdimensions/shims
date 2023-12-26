@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <Choose>
+    <When Condition=" '$(ShimsPath)' != '' ">
+      <ItemGroup>
+        <PackageReference Remove="VDimensions.Shims.Collections.Immutable" />
+        <ProjectReference Include="$(ShimsPath)\src\VDimensions.Shims.Collections.Immutable\VDimensions.Shims.Collections.Immutable.csproj" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <PackageReference Include="VDimensions.Shims.Collections.Immutable" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+</Project>

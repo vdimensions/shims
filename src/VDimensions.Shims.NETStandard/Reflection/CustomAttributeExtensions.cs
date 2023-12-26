@@ -1,5 +1,6 @@
-﻿#if FX_CUSTOM_ATTRIBUTES
+﻿#if SHIM_CUSTOM_ATTRIBUTES
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace System.Reflection
@@ -7,6 +8,8 @@ namespace System.Reflection
     /// <summary>
     /// A static class to provide the functionality of `GetCustomAttributes` method.
     /// </summary>
+    [SuppressMessage("ReSharper", "UnusedType.Global")]
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public static class CustomAttributeExtensions
     {
         /// <summary>

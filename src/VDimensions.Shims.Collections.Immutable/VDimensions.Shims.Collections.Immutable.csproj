@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net40;net35;net20</TargetFrameworks>
+    <RootNamespace>System.Collections.Immutable</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Update="ImmutableList.Builder.cs">
+      <DependentUpon>ImmutableList.cs</DependentUpon>
+    </Compile>
+    <Compile Update="ImmutableList.Builder.DebuggerProxy.cs">
+      <DependentUpon>ImmutableList.Builder.cs</DependentUpon>
+    </Compile>
+    <Compile Update="ImmutableList.DebuggerProxy.cs">
+      <DependentUpon>ImmutableList.cs</DependentUpon>
+    </Compile>
+    <Compile Update="ImmutableList.Static.cs">
+      <DependentUpon>ImmutableList.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <Import Project="$(RootPath)/ref/Reference.VDimensions.Shims.NETStandard.targets" />
+</Project>

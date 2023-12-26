@@ -1,4 +1,4 @@
-﻿// #if NET20
+﻿// #if SHIM_HASHSET
 // using System;
 // using System.Collections;
 // using System.Diagnostics;
