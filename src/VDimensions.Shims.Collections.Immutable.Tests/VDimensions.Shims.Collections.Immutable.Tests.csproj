@@ -7,5 +7,10 @@
     <RootNamespace>VDimensions.Shims.Collections.Immutable.Tests</RootNamespace>
   </PropertyGroup>
   
+  <ItemGroup>
+    <PackageReference Include="LinqBridge" />
+    <PackageReference Include="System.Collections.Immutable" />
+  </ItemGroup>
+  
   <Import Project="$(RootPath)/ref/Reference.VDimensions.Shims.Collections.Immutable.targets" />
 </Project>

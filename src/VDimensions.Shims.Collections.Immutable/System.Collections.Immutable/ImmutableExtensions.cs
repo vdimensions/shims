@@ -15,7 +15,10 @@ namespace System.Collections.Immutable
         /// <param name="sequence">The enumerable source.</param>
         /// <param name="count">Receives the number of elements in the enumeration, if it could be determined.</param>
         /// <returns><c>true</c> if the count could be determined; <c>false</c> otherwise.</returns>
-        internal static bool TryGetCount<T>(this IEnumerable<T> sequence, out int count) => sequence.TryGetCount(out count);
+        internal static bool TryGetCount<T>(this IEnumerable<T> sequence, out int count)
+        {
+            return TryGetCountWithoutEnumerating<T>(sequence, out count);
+        }
 
         /// <summary>
         /// Tries to divine the number of elements in a sequence without actually enumerating each element.
@@ -24,18 +27,18 @@ namespace System.Collections.Immutable
         /// <param name="sequence">The enumerable source.</param>
         /// <param name="count">Receives the number of elements in the enumeration, if it could be determined.</param>
         /// <returns><c>true</c> if the count could be determined; <c>false</c> otherwise.</returns>
-        internal static bool TryGetCount<T>(this IEnumerable sequence, out int count)
+        private static bool TryGetCountWithoutEnumerating<T>(this IEnumerable sequence, out int count)
         {
             switch (sequence)
             {
                 case ICollection collection:
                     count = collection.Count;
                     return true;
-                case ICollection<T> objs1:
-                    count = objs1.Count;
+                case ICollection<T> genericCollection:
+                    count = genericCollection.Count;
                     return true;
-                case IReadOnlyCollection<T> objs2:
-                    count = objs2.Count;
+                case IReadOnlyCollection<T> readOnlyCollection:
+                    count = readOnlyCollection.Count;
                     return true;
                 default:
                     count = 0;
@@ -151,7 +154,7 @@ namespace System.Collections.Immutable
         /// <returns>A struct that enumerates the collection.</returns>
         internal static DisposableEnumeratorAdapter<T, TEnumerator> GetEnumerableDisposable<T, TEnumerator>(
             this IEnumerable<T> enumerable)
-            where TEnumerator : struct, IStrongEnumerator<T>, IEnumerator<T>
+            where TEnumerator: struct, IEnumerator<T>
         {
             if (enumerable == null)
             {

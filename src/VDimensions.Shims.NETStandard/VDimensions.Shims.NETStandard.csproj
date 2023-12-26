@@ -7,9 +7,37 @@
   <PropertyGroup>
     <ProjectGuid>{D58C306D-F8B5-495B-889F-CEC7BDDDA6CC}</ProjectGuid>
     <ProjectType>Library</ProjectType>
-    <RootNamespace>System</RootNamespace>
+    <RootNamespace />
     <Description>
       A library that provides API consistency between the different .NET framework versions.
     </Description>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="LinqBridge" />
+    <PackageReference Include="NetLegacySupport.Tuple" />
+    <PackageReference Include="Portable.ConcurrentDictionary" />
+    <PackageReference Include="System.Diagnostics.TraceSource" />
+    <PackageReference Include="System.Threading.Tasks.Unofficial" />
+    <PackageReference Include="System.Threading.Thread" />
+    <PackageReference Include="System.Xml.XmlSerializer" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Update="System.Collections\Generic\SortedSet.DebugView.cs">
+      <DependentUpon>SortedSet.cs</DependentUpon>
+    </Compile>
+    <Compile Update="System.Collections\Generic\SortedSet.Enumerator.cs">
+      <DependentUpon>SortedSet.cs</DependentUpon>
+    </Compile>
+    <Compile Update="System.Collections\Generic\SortedSet.EqualityComparer.cs">
+      <DependentUpon>SortedSet.cs</DependentUpon>
+    </Compile>
+    <Compile Update="System.Collections\Generic\SortedSet.Node.cs">
+      <DependentUpon>SortedSet.cs</DependentUpon>
+    </Compile>
+    <Compile Update="System.Collections\Generic\SortedSet.TreeSubset.cs">
+      <DependentUpon>SortedSet.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>

@@ -1,20 +1,43 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net40;net35;net20</TargetFrameworks>
-    <RootNamespace>System.Collections.Immutable</RootNamespace>
+    <RootNamespace />
   </PropertyGroup>
+
   <ItemGroup>
-    <Compile Update="ImmutableList.Builder.cs">
-      <DependentUpon>ImmutableList.cs</DependentUpon>
-    </Compile>
-    <Compile Update="ImmutableList.Builder.DebuggerProxy.cs">
+    <PackageReference Include="LinqBridge" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="System.Collections.Immutable\ImmutableList.Builder.DebuggerProxy.cs">
       <DependentUpon>ImmutableList.Builder.cs</DependentUpon>
     </Compile>
-    <Compile Update="ImmutableList.DebuggerProxy.cs">
+    <Compile Update="System.Collections.Immutable\ImmutableList.DebuggerProxy.cs">
       <DependentUpon>ImmutableList.cs</DependentUpon>
     </Compile>
-    <Compile Update="ImmutableList.Static.cs">
+    <Compile Update="System.Collections.Immutable\ImmutableList.Builder.cs">
       <DependentUpon>ImmutableList.cs</DependentUpon>
+    </Compile>
+    <Compile Update="System.Collections.Immutable\ImmutableList.Helper.cs">
+      <DependentUpon>ImmutableList.cs</DependentUpon>
+    </Compile>
+    <Compile Update="System.Collections.Immutable\ImmutableList.Static.cs">
+      <DependentUpon>ImmutableList.cs</DependentUpon>
+    </Compile>
+    <Compile Update="System.Collections.Immutable\IImmutableListQueries.cs">
+      <DependentUpon>IImmutableList.cs</DependentUpon>
+    </Compile>
+    <Compile Update="System.Collections.Immutable\ImmutableArray.Builder.cs">
+      <DependentUpon>ImmutableArray.cs</DependentUpon>
+    </Compile>
+    <Compile Update="System.Collections.Immutable\ImmutableArray.Static.cs">
+      <DependentUpon>ImmutableArray.cs</DependentUpon>
+    </Compile>
+    <Compile Update="System.Collections.Immutable\ImmutableArray.Builder.DebuggerProxy.cs">
+      <DependentUpon>ImmutableArray.Builder.cs</DependentUpon>
+    </Compile>
+    <Compile Update="System.Collections.Immutable\ImmutableArray.Enumerator.cs">
+      <DependentUpon>ImmutableArray.cs</DependentUpon>
     </Compile>
   </ItemGroup>
 

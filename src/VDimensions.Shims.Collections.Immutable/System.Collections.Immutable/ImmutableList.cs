@@ -30,234 +30,6 @@ namespace System.Collections.Immutable
         , IImmutableListQueries<T>
         , IStrongEnumerable<T, List<T>.Enumerator>
     {
-        private static class Helper
-        {
-            internal static void CopyTo(in List<T> list, in T[] array)
-            {
-                if (array == null)
-                {
-                    throw new ArgumentNullException(nameof(array));
-                }
-                if (array.Length < list.Count)
-                {
-                    throw new ArgumentException(nameof(array));
-                }
-                list.CopyTo(array);
-            }
-            internal static void CopyTo(in List<T> list, in T[] array, in int arrayIndex)
-            {
-                if (array == null)
-                {
-                    throw new ArgumentNullException(nameof(array));
-                }
-                if (arrayIndex < 0)
-                {
-                    throw new ArgumentOutOfRangeException(nameof(arrayIndex));
-                }
-
-                if (array.Length < arrayIndex + list.Count)
-                {
-                    throw new ArgumentException(nameof(array));
-                }
-                list.CopyTo(array, arrayIndex);
-            }
-            internal static void CopyTo(in List<T> list, in int index, in T[] array, in int arrayIndex, int count)
-            {
-                if (array == null)
-                {
-                    throw new ArgumentNullException(nameof(array));
-                }
-                if (arrayIndex < 0)
-                {
-                    throw new ArgumentOutOfRangeException(nameof(arrayIndex));
-                }
-                if (count < 0)
-                {
-                    throw new ArgumentOutOfRangeException(nameof(count));
-                }
-                if (index >= list.Count)
-                {
-                    throw new ArgumentException(nameof(index));
-                }
-                if (arrayIndex + count > array.Length)
-                {
-                    throw new ArgumentException(nameof(count));
-                }
-                list.CopyTo(index, array, arrayIndex, count);
-            }
-            
-            internal static int FindIndex(in List<T> list, in Predicate<T> match)
-            {
-                if (match == null)
-                {
-                    throw new ArgumentNullException(nameof(match));
-                }
-                return list.FindIndex(match);
-            }
-
-            internal static int FindIndex(in List<T> list, in int startIndex, in Predicate<T> match)
-            {
-                if (match == null)
-                {
-                    throw new ArgumentNullException(nameof(match));
-                }
-                if (startIndex < 0 || startIndex > list.Count)
-                {
-                    throw new ArgumentNullException(nameof(startIndex));
-                }
-                return list.FindIndex(startIndex, match);
-            }
-
-            internal static int FindIndex(in List<T> list, in int startIndex, in int count, in Predicate<T> match)
-            {
-                if (match == null)
-                {
-                    throw new ArgumentNullException(nameof(match));
-                }
-                if (startIndex < 0)
-                {
-                    throw new ArgumentNullException(nameof(startIndex));
-                }
-                if (count < 0 || startIndex + count > list.Count)
-                {
-                    throw new ArgumentNullException(nameof(count));
-                }
-                return list.FindIndex(startIndex, count, match);
-            }
-
-            internal static T FindLast(in List<T> list, in Predicate<T> match)
-            {
-                if (match == null)
-                {
-                    throw new ArgumentNullException(nameof(match));
-                }
-                return list.FindLast(match);
-            }
-
-            internal static int FindLastIndex(in List<T> list, in Predicate<T> match)
-            {
-                if (match == null)
-                {
-                    throw new ArgumentNullException(nameof(match));
-                }
-                return list.FindLastIndex(match);
-            }
-
-            internal static int FindLastIndex(in List<T> list, in int startIndex, in Predicate<T> match)
-            {
-                if (startIndex < 0 || startIndex >= list.Count)
-                {
-                    throw new ArgumentOutOfRangeException(nameof(startIndex));
-                }
-                if (match == null)
-                {
-                    throw new ArgumentNullException(nameof(match));
-                }
-                return list.FindLastIndex(startIndex, match);
-            }
-
-            internal static int FindLastIndex(in List<T> list, in int startIndex, in int count, in Predicate<T> match)
-            {
-                if (startIndex < 0 || (startIndex - count + 1) < 0)
-                {
-                    throw new ArgumentOutOfRangeException(nameof(startIndex));
-                }
-                if (count > list.Count)
-                {
-                    throw new ArgumentOutOfRangeException(nameof(count));
-                }
-                if (match == null)
-                {
-                    throw new ArgumentNullException(nameof(match));
-                }
-                return list.FindLastIndex(startIndex, count, match);
-            }
-            
-            internal static bool IsCompatibleObject(object value)
-            {
-                if (value is T)
-                {
-                    return true;
-                }
-                return value == null && default (T) == null;
-            }
-
-            internal static int IndexOf(
-                in IList<T> list, 
-                in T item, 
-                in int index, 
-                in int count,
-                in IEqualityComparer<T> equalityComparer)
-            {
-                var ec = equalityComparer ?? EqualityComparer<T>.Default;
-                for (var i = index; i < count; i++)
-                {
-                    if (ec.Equals(list[i], item))
-                    {
-                        return i;
-                    }
-                }
-                return -1;
-            }
-            
-            internal static int LastIndexOf(
-                in IList<T> list, 
-                in T item,
-                in int startIndex,
-                in int count,
-                in IEqualityComparer<T> equalityComparer)
-            {
-                var ec = equalityComparer ?? EqualityComparer<T>.Default;
-                for (var i = count - 1; i >= startIndex; i--)
-                {
-                    if (ec.Equals(list[i], item))
-                    {
-                        return i;
-                    }
-                }
-                return -1;
-            }
-            
-            internal static void Sort(
-                in List<T> list, 
-                in int index, 
-                in int count, 
-                in IComparer<T> comparer)
-            {
-                if (index < 0)
-                {
-                    throw new ArgumentOutOfRangeException(nameof(index));
-                }
-                if (count < 0)
-                {
-                    throw new ArgumentOutOfRangeException(nameof(count));
-                }
-                if (list.Count < index + count)
-                {
-                    throw new ArgumentOutOfRangeException(nameof(count));
-                }
-                list.Sort(index, count, comparer);
-            }
-            
-            internal static void Reverse(in List<T> list, in int index, in int count)
-            {
-                if (index < 0)
-                {
-                    throw new ArgumentOutOfRangeException(nameof(index));
-                }
-                if (count < 0)
-                {
-                    throw new ArgumentOutOfRangeException(nameof(count));
-                }
-                if (list.Count < index + count)
-                {
-                    throw new ArgumentOutOfRangeException(nameof(count));
-                }
-                list.Reverse(index, count);
-            }
-        }
-       
-        
         /// <summary>
         /// Gets a reference to an empty <see cref="ImmutableList{T}"/> instance.
         /// </summary>
@@ -500,7 +272,7 @@ namespace System.Collections.Immutable
             IEqualityComparer<T> equalityComparer)
         {
             var newList = new List<T>(_impl);
-            var indexOfOldValue = Helper.IndexOf(_impl, oldValue, 0, _impl.Count, equalityComparer);
+            var indexOfOldValue = ImmutableList.Helper.IndexOf(_impl, oldValue, 0, _impl.Count, equalityComparer);
             if (indexOfOldValue >= 0)
             {
                 newList[indexOfOldValue] = newValue;
@@ -575,7 +347,7 @@ namespace System.Collections.Immutable
         public ImmutableList<T> Sort(int index, int count, IComparer<T> comparer)
         {
             var newList = new List<T>(_impl);
-            Helper.Sort(newList, index, count, comparer);
+            ImmutableList.Helper.Sort(newList, index, count, comparer);
             return new ImmutableList<T>(newList);
         }
 
@@ -603,7 +375,7 @@ namespace System.Collections.Immutable
         /// copied from <see cref="System.Collections.Immutable.ImmutableList{T}" />. The <see cref="System.Array" /> must have
         /// zero-based indexing.
         /// </param>
-        public void CopyTo([ValidatedNotNull] T[] array) => Helper.CopyTo(_impl, array);
+        public void CopyTo([ValidatedNotNull] T[] array) => ImmutableList.Helper.CopyTo(_impl, array);
 
         /// <summary>
         /// Copies the entire <see cref="T:System.Collections.Immutable.ImmutableList`1" /> to a compatible one-dimensional
@@ -617,7 +389,7 @@ namespace System.Collections.Immutable
         /// <param name="arrayIndex">
         /// The zero-based index in array at which copying begins.
         /// </param>
-        public void CopyTo([ValidatedNotNull] T[] array, int arrayIndex) => Helper.CopyTo(_impl, array, arrayIndex);
+        public void CopyTo([ValidatedNotNull] T[] array, int arrayIndex) => ImmutableList.Helper.CopyTo(_impl, array, arrayIndex);
 
         /// <summary>
         /// Copies a range of elements from the <see cref="ImmutableList{T}" /> to
@@ -635,7 +407,7 @@ namespace System.Collections.Immutable
         /// </param>
         /// <param name="arrayIndex">The zero-based index in array at which copying begins.</param>
         /// <param name="count">The number of elements to copy.</param>
-        public void CopyTo(int index, T[] array, int arrayIndex, int count) => Helper.CopyTo(_impl, index, array, arrayIndex, count);
+        public void CopyTo(int index, T[] array, int arrayIndex, int count) => ImmutableList.Helper.CopyTo(_impl, index, array, arrayIndex, count);
         
         /// <summary>
         /// Creates a shallow copy of a range of elements in the source <see cref="ImmutableList{T}" />.
@@ -769,7 +541,7 @@ namespace System.Collections.Immutable
         /// The zero-based index of the first occurrence of an element that matches the
         /// conditions defined by match, if found; otherwise, -1.
         /// </returns>
-        public int FindIndex([ValidatedNotNull] Predicate<T> match) => Helper.FindIndex(_impl, match);
+        public int FindIndex([ValidatedNotNull] Predicate<T> match) => ImmutableList.Helper.FindIndex(_impl, match);
 
         /// <summary>
         /// Searches for an element that matches the conditions defined by the specified
@@ -783,7 +555,7 @@ namespace System.Collections.Immutable
         /// The zero-based index of the first occurrence of an element that matches the
         /// conditions defined by match, if found; otherwise, -1.
         /// </returns>
-        public int FindIndex(int startIndex, [ValidatedNotNull] Predicate<T> match) => Helper.FindIndex(_impl, startIndex, match);
+        public int FindIndex(int startIndex, [ValidatedNotNull] Predicate<T> match) => ImmutableList.Helper.FindIndex(_impl, startIndex, match);
 
         /// <summary>
         /// Searches for an element that matches the conditions defined by the specified
@@ -798,7 +570,7 @@ namespace System.Collections.Immutable
         /// The zero-based index of the first occurrence of an element that matches the
         /// conditions defined by match, if found; otherwise, -1.
         /// </returns>
-        public int FindIndex(int startIndex, int count, [ValidatedNotNull] Predicate<T> match) => Helper.FindIndex(_impl, startIndex, count, match);
+        public int FindIndex(int startIndex, int count, [ValidatedNotNull] Predicate<T> match) => ImmutableList.Helper.FindIndex(_impl, startIndex, count, match);
 
         /// <summary>
         /// Searches for an element that matches the conditions defined by the specified
@@ -812,7 +584,7 @@ namespace System.Collections.Immutable
         /// The last element that matches the conditions defined by the specified predicate,
         /// if found; otherwise, the default value for type T.
         /// </returns>
-        public T FindLast([ValidatedNotNull] Predicate<T> match) => Helper.FindLast(_impl, match);
+        public T FindLast([ValidatedNotNull] Predicate<T> match) => ImmutableList.Helper.FindLast(_impl, match);
 
         /// <summary>
         /// Searches for an element that matches the conditions defined by the specified
@@ -827,7 +599,7 @@ namespace System.Collections.Immutable
         /// The zero-based index of the last occurrence of an element that matches the
         /// conditions defined by match, if found; otherwise, -1.
         /// </returns>
-        public int FindLastIndex([ValidatedNotNull] Predicate<T> match) => Helper.FindLastIndex(_impl, match);
+        public int FindLastIndex([ValidatedNotNull] Predicate<T> match) => ImmutableList.Helper.FindLastIndex(_impl, match);
 
         /// <summary>
         /// Searches for an element that matches the conditions defined by the specified
@@ -842,7 +614,7 @@ namespace System.Collections.Immutable
         /// The zero-based index of the last occurrence of an element that matches the
         /// conditions defined by match, if found; otherwise, -1.
         /// </returns>
-        public int FindLastIndex(int startIndex, Predicate<T> match) => Helper.FindLastIndex(_impl, startIndex, match);
+        public int FindLastIndex(int startIndex, Predicate<T> match) => ImmutableList.Helper.FindLastIndex(_impl, startIndex, match);
 
         /// <summary>
         /// Searches for an element that matches the conditions defined by the specified
@@ -860,7 +632,7 @@ namespace System.Collections.Immutable
         /// The zero-based index of the last occurrence of an element that matches the
         /// conditions defined by match, if found; otherwise, -1.
         /// </returns>
-        public int FindLastIndex(int startIndex, int count, [ValidatedNotNull] Predicate<T> match) => Helper.FindLastIndex(_impl, startIndex, count, match);
+        public int FindLastIndex(int startIndex, int count, [ValidatedNotNull] Predicate<T> match) => ImmutableList.Helper.FindLastIndex(_impl, startIndex, count, match);
         
         /// <summary>
         /// See the <see cref="T:System.Collections.Immutable.IImmutableList`1" /> interface.
@@ -893,7 +665,7 @@ namespace System.Collections.Immutable
         /// </returns>
         public int IndexOf(T item, int index, int count, IEqualityComparer<T> equalityComparer)
         {
-            return Helper.IndexOf(_impl, item, index, count, equalityComparer);
+            return ImmutableList.Helper.IndexOf(_impl, item, index, count, equalityComparer);
         }
 
         /// <summary>
@@ -918,7 +690,7 @@ namespace System.Collections.Immutable
         /// </returns>
         public int LastIndexOf(T item, int index, int count, IEqualityComparer<T> equalityComparer)
         {
-            return Helper.LastIndexOf(_impl, item, index, count, equalityComparer);
+            return ImmutableList.Helper.LastIndexOf(_impl, item, index, count, equalityComparer);
         }
         
         /// <summary>
@@ -979,7 +751,7 @@ namespace System.Collections.Immutable
         public ImmutableList<T> Reverse(int index, int count)
         {
             var newList = new List<T>(_impl);
-            Helper.Reverse(newList, index, count);
+            ImmutableList.Helper.Reverse(newList, index, count);
             return new ImmutableList<T>(newList);
         }
 
@@ -992,20 +764,32 @@ namespace System.Collections.Immutable
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public bool IsEmpty => _impl.Count == 0;
 
-        /// <summary>Gets the element at the specified index in the read-only list.</summary>
-        /// <param name="index">The zero-based index of the element to get.</param>
-        /// <returns>The element at the specified index in the read-only list.</returns>
+        /// <summary>
+        /// Gets the element at the specified index in the read-only list.
+        /// </summary>
+        /// <param name="index">
+        /// The zero-based index of the element to get.
+        /// </param>
+        /// <returns>
+        /// The element at the specified index in the read-only list.
+        /// </returns>
         public T this[int index] => _impl[index];
         T IOrderedCollection<T>.this[int index] => this[index];
         
         #region IList<T>
-        /// <exception cref="NotSupportedException">Always thrown.</exception>
+        /// <exception cref="NotSupportedException">
+        /// Always thrown.
+        /// </exception>
         void IList<T>.Insert(int index, T item) => throw new NotSupportedException();
 
-        /// <exception cref="NotSupportedException">Always thrown.</exception>
+        /// <exception cref="NotSupportedException">
+        /// Always thrown.
+        /// </exception>
         void IList<T>.RemoveAt(int index) => throw new NotSupportedException();
 
-        /// <exception cref="NotSupportedException">Always thrown from the setter.</exception>
+        /// <exception cref="NotSupportedException">
+        /// Always thrown from the setter.
+        /// </exception>
         T IList<T>.this[int index]
         {
             get => this[index];
@@ -1014,45 +798,64 @@ namespace System.Collections.Immutable
         #endregion IList<T>
         
         #region IList
-        /// <exception cref="NotSupportedException">Always thrown.</exception>
+        /// <exception cref="NotSupportedException">
+        /// Always thrown.
+        /// </exception>
         int IList.Add(object item) => throw new NotSupportedException();
         
-        /// <exception cref="NotSupportedException">Always thrown.</exception>
+        /// <exception cref="NotSupportedException">
+        /// Always thrown.
+        /// </exception>
         void IList.Clear() => throw new NotSupportedException();
         
-        /// <exception cref="NotSupportedException">Always thrown.</exception>
+        /// <exception cref="NotSupportedException">
+        /// Always thrown.
+        /// </exception>
         void IList.Remove(object item) => throw new NotSupportedException();
         
         /// <summary>
-        /// Determines whether the <see cref="T:System.Collections.IList" /> contains a specific value.
+        /// Determines whether the <see cref="IList" /> contains a specific value.
         /// </summary>
-        /// <param name="value">The object to locate in the <see cref="T:System.Collections.IList" />.</param>
+        /// <param name="value">The object to locate in the <see cref="IList" />.</param>
         /// <returns>
-        /// true if the <see cref="T:System.Object" /> is found in the <see cref="T:System.Collections.IList" />; otherwise, false.
+        /// true if the <see cref="Object" /> is found in the <see cref="IList" />; otherwise, false.
         /// </returns>
-        bool IList.Contains(object value) => Helper.IsCompatibleObject(value) && Contains((T) value);
+        bool IList.Contains(object value) => ImmutableList.Helper.IsCompatibleObject<T>(value) && Contains((T) value);
 
         /// <summary>
-        /// Determines the index of a specific item in the <see cref="T:System.Collections.IList" />.
+        /// Determines the index of a specific item in the <see cref="IList" />.
         /// </summary>
-        /// <param name="value">The object to locate in the <see cref="T:System.Collections.IList" />.</param>
+        /// <param name="value">
+        /// The object to locate in the <see cref="IList" />.
+        /// </param>
         /// <returns>
         /// The index of <paramref name="value" /> if found in the list; otherwise, -1.
         /// </returns>
-        int IList.IndexOf(object value) => Helper.IsCompatibleObject(value) ? IndexOf((T) value) : -1;
+        int IList.IndexOf(object value) => ImmutableList.Helper.IsCompatibleObject<T>(value) ? IndexOf((T) value) : -1;
         
-        /// <exception cref="NotSupportedException">Always thrown.</exception>
+        /// <exception cref="NotSupportedException">
+        /// Always thrown.
+        /// </exception>
         void IList.Insert(int index, object item) => throw new NotSupportedException();
 
-        /// <exception cref="NotSupportedException">Always thrown.</exception>
+        /// <exception cref="NotSupportedException">
+        /// Always thrown.
+        /// </exception>
         void IList.RemoveAt(int index) => throw new NotSupportedException();
 
         bool IList.IsFixedSize => false;
         bool IList.IsReadOnly => true;
 
-        /// <summary>Gets or sets the value at the specified index.</summary>
-        /// <exception cref="T:System.IndexOutOfRangeException">Thrown from getter when <paramref name="index" /> is negative or not less than <see cref="P:System.Collections.Immutable.ImmutableList`1.Count" />.</exception>
-        /// <exception cref="T:System.NotSupportedException">Always thrown from the setter.</exception>
+        /// <summary>
+        /// Gets or sets the value at the specified index.
+        /// </summary>
+        /// <exception cref="IndexOutOfRangeException">
+        /// Thrown from getter when <paramref name="index" /> is negative or not less than
+        /// <see cref="ImmutableList{T}.Count" />.
+        /// </exception>
+        /// <exception cref="NotSupportedException">
+        /// Always thrown from the setter.
+        /// </exception>
         object IList.this[int index]
         {
             get => this[index];

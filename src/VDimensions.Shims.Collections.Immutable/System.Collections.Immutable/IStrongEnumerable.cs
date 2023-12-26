@@ -10,7 +10,7 @@ namespace System.Collections.Immutable
     /// </summary>
     /// <typeparam name="T">The type of value to be enumerated.</typeparam>
     /// <typeparam name="TEnumerator">The type of the enumerator struct.</typeparam>
-    internal interface IStrongEnumerable<out T, TEnumerator> 
+    internal interface IStrongEnumerable<out T, out TEnumerator> 
         where TEnumerator: struct, IEnumerator<T>
     {
         /// <summary>Gets the strongly-typed enumerator.</summary>

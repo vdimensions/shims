@@ -73,15 +73,12 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-
-    <PackageReference Include="LinqBridge" />
-    <PackageReference Include="NetLegacySupport.Tuple" />
-    <PackageReference Include="Portable.ConcurrentDictionary" />
-    <PackageReference Include="System.Diagnostics.TraceSource" />
-    <PackageReference Include="System.Threading.Tasks.Unofficial" />
-    <PackageReference Include="System.Threading.Thread" />
-    <PackageReference Include="System.Xml.XmlSerializer" />
   </ItemGroup>
+
+  <PropertyGroup>
+    <Shims/>
+    <Polyfills/>
+  </PropertyGroup>
 
   <Choose>
     <When Condition="'$(TargetFramework)' == 'netstandard2.1'">
@@ -94,53 +91,59 @@
     </When>
     <When Condition="'$(TargetFramework)' == 'netstandard1.6'">
       <PropertyGroup>
-        <DefineConstants>$(DefineConstants); POLYFILL_CUSTOM_ATTRIBUTES</DefineConstants>
+        <Polyfills>$(Polyfills); POLYFILL_CUSTOM_ATTRIBUTES</Polyfills>
       </PropertyGroup>
     </When>
     <When Condition="'$(TargetFramework)' == 'netstandard1.5'">
       <PropertyGroup>
-        <DefineConstants>$(DefineConstants); POLYFILL_CUSTOM_ATTRIBUTES</DefineConstants>
+        <Polyfills>$(Polyfills); POLYFILL_CUSTOM_ATTRIBUTES</Polyfills>
       </PropertyGroup>
     </When>
     <When Condition="'$(TargetFramework)' == 'netstandard1.4'">
       <PropertyGroup>
-        <DefineConstants>$(DefineConstants); POLYFILL_CUSTOM_ATTRIBUTES</DefineConstants>
+        <Polyfills>$(Polyfills); POLYFILL_CUSTOM_ATTRIBUTES</Polyfills>
       </PropertyGroup>
     </When>
     <When Condition="'$(TargetFramework)' == 'netstandard1.3'">
       <PropertyGroup>
-        <DefineConstants>$(DefineConstants); POLYFILL_CUSTOM_ATTRIBUTES</DefineConstants>
+        <Polyfills>$(Polyfills); POLYFILL_CUSTOM_ATTRIBUTES</Polyfills>
       </PropertyGroup>
     </When>
     <When Condition="'$(TargetFramework)' == 'netstandard1.2'">
       <PropertyGroup>
-        <DefineConstants>$(DefineConstants); POLYFILL_CUSTOM_ATTRIBUTES</DefineConstants>
+        <Polyfills>$(Polyfills); POLYFILL_CUSTOM_ATTRIBUTES</Polyfills>
       </PropertyGroup>
     </When>
     <When Condition="'$(TargetFramework)' == 'netstandard1.1'">
       <PropertyGroup>
-        <DefineConstants>$(DefineConstants); POLYFILL_CUSTOM_ATTRIBUTES</DefineConstants>
+        <Polyfills>$(Polyfills); POLYFILL_CUSTOM_ATTRIBUTES</Polyfills>
       </PropertyGroup>
     </When>
     <When Condition="'$(TargetFramework)' == 'netstandard1.0'">
       <PropertyGroup>
-        <DefineConstants>$(DefineConstants); POLYFILL_CUSTOM_ATTRIBUTES</DefineConstants>
+        <Polyfills>$(Polyfills); POLYFILL_CUSTOM_ATTRIBUTES</Polyfills>
       </PropertyGroup>
     </When>
     <When Condition="'$(TargetFramework)' == 'net40'">
       <PropertyGroup>
-        <DefineConstants>$(DefineConstants); SHIM_CUSTOM_ATTRIBUTES; SHIM_READONLY_COLLECTIONS</DefineConstants>
+        <Shims>$(Shims); SHIM_CUSTOM_ATTRIBUTES; SHIM_READONLY_COLLECTIONS</Shims>
       </PropertyGroup>
     </When>
     <When Condition="'$(TargetFramework)' == 'net35'">
       <PropertyGroup>
-        <DefineConstants>$(DefineConstants); SHIM_CUSTOM_ATTRIBUTES; SHIM_READONLY_COLLECTIONS; SHIM_SET</DefineConstants>
+        <Shims>$(Shims); SHIM_CUSTOM_ATTRIBUTES; SHIM_READONLY_COLLECTIONS; SHIM_SET; SHIM_SORTED_SET</Shims>
+        <Polyfills>$(Polyfills); POLYFILL_ARRAY_STRUCTURAL_COMPARABLE; POLYFILL_ARRAY_STRUCTURAL_EQUATABLE</Polyfills>
       </PropertyGroup>
     </When>
     <When Condition="'$(TargetFramework)' == 'net20'">
       <PropertyGroup>
-        <DefineConstants>$(DefineConstants); SHIM_CUSTOM_ATTRIBUTES; SHIM_HASHSET; SHIM_READONLY_COLLECTIONS</DefineConstants>
+        <Shims>$(Shims); SHIM_CUSTOM_ATTRIBUTES; SHIM_HASHSET; SHIM_READONLY_COLLECTIONS; SHIM_SET; SHIM_SORTED_SET</Shims>
+        <Polyfills>$(Polyfills); POLYFILL_ARRAY_STRUCTURAL_COMPARABLE; POLYFILL_ARRAY_STRUCTURAL_EQUATABLE</Polyfills>
       </PropertyGroup>
     </When>
   </Choose>
+  
+  <PropertyGroup>
+    <DefineConstants>$(Polyfills); $(Shims); $(DefineConstants)</DefineConstants>
+  </PropertyGroup>
 </Project>

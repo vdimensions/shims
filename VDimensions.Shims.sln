@@ -14,6 +14,7 @@ ProjectSection(SolutionItems) = preProject
 	src\Directory.Test.props = src\Directory.Test.props
 	src\Directory.Test.targets = src\Directory.Test.targets
 	README.md = README.md
+	src\preprocessor_constants.md = src\preprocessor_constants.md
 EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ref", "ref", "{18DB551A-CCE5-40E0-BADE-DC1FA539263A}"
@@ -29,6 +30,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VDimensions.Shims.Collections.Immutable", "src\VDimensions.Shims.Collections.Immutable\VDimensions.Shims.Collections.Immutable.csproj", "{0459F73B-7AA3-44D1-B7A7-5091B29D76A5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VDimensions.Shims.Collections.Immutable.Tests", "src\VDimensions.Shims.Collections.Immutable.Tests\VDimensions.Shims.Collections.Immutable.Tests.csproj", "{2413D862-66C8-4863-AAE0-D6244DD402B5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "System.Threading.Tasks", "System.Threading.Tasks", "{0353068A-42E9-43F2-A1EA-548BC9D3A643}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -66,5 +69,6 @@ Global
 		{F0C86DEF-3511-496B-A8C0-CA4946894829} = {776D4CE2-2B6A-4E18-B389-FACA1FB0C0C4}
 		{0459F73B-7AA3-44D1-B7A7-5091B29D76A5} = {F0C86DEF-3511-496B-A8C0-CA4946894829}
 		{2413D862-66C8-4863-AAE0-D6244DD402B5} = {F0C86DEF-3511-496B-A8C0-CA4946894829}
+		{0353068A-42E9-43F2-A1EA-548BC9D3A643} = {776D4CE2-2B6A-4E18-B389-FACA1FB0C0C4}
 	EndGlobalSection
 EndGlobal

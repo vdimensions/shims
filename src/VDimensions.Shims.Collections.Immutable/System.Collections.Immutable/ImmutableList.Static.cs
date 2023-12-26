@@ -10,7 +10,7 @@ namespace System.Collections.Immutable
     /// <seealso cref="IImmutableList{T}"/>
     [SuppressMessage("ReSharper", "UnusedType.Global")]
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
-    public static class ImmutableList
+    public static partial class ImmutableList
     {
         /// <summary>
         /// Creates an empty immutable list.

@@ -25,7 +25,7 @@ namespace System.Collections.Immutable
 
         /// <summary>Gets a simple debugger-viewable list.</summary>
         [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
-        public T[] Contents => _cachedContents ?? (_cachedContents = ImmutableExtensions.ToArray<T>(Collection, Count));
+        public T[] Contents => _cachedContents ?? (_cachedContents = ImmutableExtensions.ToArray(Collection, Count));
         
         protected abstract int Count { get; }
     }

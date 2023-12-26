@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using System.Threading;
 
 namespace System.Collections.Immutable
 {
@@ -27,6 +26,7 @@ namespace System.Collections.Immutable
         [SuppressMessage("ReSharper", "ForCanBeConvertedToForeach")]
         [SuppressMessage("ReSharper", "RedundantExtendsListEntry")]
         [SuppressMessage("ReSharper", "UnusedMember.Global")]
+        [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
         public sealed partial class Builder 
             : IList<T>
             , ICollection<T>
@@ -410,7 +410,7 @@ namespace System.Collections.Immutable
             /// The zero-based index of the first occurrence of an element that matches the
             /// conditions defined by match, if found; otherwise, -1.
             /// </returns>
-            public int FindIndex(Predicate<T> match) => Helper.FindIndex(_impl, match);
+            public int FindIndex(Predicate<T> match) => ImmutableList.Helper.FindIndex(_impl, match);
 
             /// <summary>
             /// Searches for an element that matches the conditions defined by the specified
@@ -424,7 +424,7 @@ namespace System.Collections.Immutable
             /// The zero-based index of the first occurrence of an element that matches the
             /// conditions defined by match, if found; otherwise, -1.
             /// </returns>
-            public int FindIndex(int startIndex, Predicate<T> match) => Helper.FindIndex(_impl, startIndex, match);
+            public int FindIndex(int startIndex, Predicate<T> match) => ImmutableList.Helper.FindIndex(_impl, startIndex, match);
 
             /// <summary>
             /// Searches for an element that matches the conditions defined by the specified
@@ -439,7 +439,7 @@ namespace System.Collections.Immutable
             /// The zero-based index of the first occurrence of an element that matches the
             /// conditions defined by match, if found; otherwise, -1.
             /// </returns>
-            public int FindIndex(int startIndex, int count, Predicate<T> match) => Helper.FindIndex(_impl, startIndex, count, match);
+            public int FindIndex(int startIndex, int count, Predicate<T> match) => ImmutableList.Helper.FindIndex(_impl, startIndex, count, match);
 
             /// <summary>
             /// Searches for an element that matches the conditions defined by the specified
@@ -453,7 +453,7 @@ namespace System.Collections.Immutable
             /// The last element that matches the conditions defined by the specified predicate,
             /// if found; otherwise, the default value for type T.
             /// </returns>
-            public T FindLast(Predicate<T> match) => Helper.FindLast(_impl, match);
+            public T FindLast(Predicate<T> match) => ImmutableList.Helper.FindLast(_impl, match);
 
             /// <summary>
             /// Searches for an element that matches the conditions defined by the specified
@@ -468,7 +468,7 @@ namespace System.Collections.Immutable
             /// The zero-based index of the last occurrence of an element that matches the
             /// conditions defined by match, if found; otherwise, -1.
             /// </returns>
-            public int FindLastIndex(Predicate<T> match) => Helper.FindLastIndex(_impl, match);
+            public int FindLastIndex(Predicate<T> match) => ImmutableList.Helper.FindLastIndex(_impl, match);
 
             /// <summary>
             /// Searches for an element that matches the conditions defined by the specified
@@ -483,7 +483,7 @@ namespace System.Collections.Immutable
             /// The zero-based index of the last occurrence of an element that matches the
             /// conditions defined by match, if found; otherwise, -1.
             /// </returns>
-            public int FindLastIndex(int startIndex, Predicate<T> match) => Helper.FindLastIndex(_impl, startIndex, match);
+            public int FindLastIndex(int startIndex, Predicate<T> match) => ImmutableList.Helper.FindLastIndex(_impl, startIndex, match);
 
             /// <summary>
             /// Searches for an element that matches the conditions defined by the specified
@@ -501,7 +501,8 @@ namespace System.Collections.Immutable
             /// The zero-based index of the last occurrence of an element that matches the
             /// conditions defined by match, if found; otherwise, -1.
             /// </returns>
-            public int FindLastIndex(int startIndex, int count, Predicate<T> match) => Helper.FindLastIndex(_impl, startIndex, count, match);
+            public int FindLastIndex(int startIndex, int count, Predicate<T> match) 
+                => ImmutableList.Helper.FindLastIndex(_impl, startIndex, count, match);
 
             /// <summary>
             /// Searches for the specified object and returns the zero-based index of the
@@ -573,7 +574,7 @@ namespace System.Collections.Immutable
             /// </returns>
             public int IndexOf(T item, int index, int count, IEqualityComparer<T> equalityComparer)
             {
-                return Helper.IndexOf(_impl, item, index, count, equalityComparer);
+                return ImmutableList.Helper.IndexOf(_impl, item, index, count, equalityComparer);
             }
 
             /// <summary>
@@ -659,7 +660,7 @@ namespace System.Collections.Immutable
                 int count,
                 IEqualityComparer<T> equalityComparer)
             {
-                return Helper.LastIndexOf(_impl, item, startIndex, count, equalityComparer);
+                return ImmutableList.Helper.LastIndexOf(_impl, item, startIndex, count, equalityComparer);
             }
 
             /// <summary>
@@ -780,7 +781,7 @@ namespace System.Collections.Immutable
             {
                 lock (_syncRoot)
                 {
-                    Helper.Reverse(_impl, index, count);
+                    ImmutableList.Helper.Reverse(_impl, index, count);
                     UpdateVersion<object>(null);
                 }
             }
@@ -853,7 +854,7 @@ namespace System.Collections.Immutable
             {
                 lock (_syncRoot)
                 {
-                    Helper.Sort(_impl, index, count, comparer ?? Comparer<T>.Default);
+                    ImmutableList.Helper.Sort(_impl, index, count, comparer ?? Comparer<T>.Default);
                     UpdateVersion<object>(null);
                 }
             }
@@ -965,7 +966,7 @@ namespace System.Collections.Immutable
             /// <returns>
             /// true if the <see cref="T:System.Object" /> is found in the <see cref="T:System.Collections.IList" />; otherwise, false.
             /// </returns>
-            bool IList.Contains(object value) => Helper.IsCompatibleObject(value) && Contains((T) value);
+            bool IList.Contains(object value) => ImmutableList.Helper.IsCompatibleObject<T>(value) && Contains((T) value);
 
             /// <summary>
             /// Determines the index of a specific item in the <see cref="T:System.Collections.IList" />.
@@ -974,7 +975,7 @@ namespace System.Collections.Immutable
             /// <returns>
             /// The index of <paramref name="value" /> if found in the list; otherwise, -1.
             /// </returns>
-            int IList.IndexOf(object value) => Helper.IsCompatibleObject(value) ? IndexOf((T) value) : -1;
+            int IList.IndexOf(object value) => ImmutableList.Helper.IsCompatibleObject<T>(value) ? IndexOf((T) value) : -1;
 
             /// <summary>
             /// Inserts an item to the <see cref="T:System.Collections.IList" /> at the specified index.
@@ -990,9 +991,9 @@ namespace System.Collections.Immutable
             bool IList.IsFixedSize => false;
 
             /// <summary>
-            /// Gets a value indicating whether the <see cref="T:System.Collections.Generic.ICollection`1" /> is read-only.
+            /// Gets a value indicating whether the <see cref="ICollection{T}" /> is read-only.
             /// </summary>
-            /// <returns>true if the <see cref="T:System.Collections.Generic.ICollection`1" /> is read-only; otherwise, false.
+            /// <returns>true if the <see cref="ICollection{T}" /> is read-only; otherwise, false.
             /// </returns>
             bool IList.IsReadOnly => false;
 
@@ -1002,7 +1003,7 @@ namespace System.Collections.Immutable
             /// <param name="value">The object to remove from the <see cref="T:System.Collections.IList" />.</param>
             void IList.Remove(object value)
             {
-                if (!Helper.IsCompatibleObject(value))
+                if (!ImmutableList.Helper.IsCompatibleObject<T>(value))
                 {
                     return;
                 }
