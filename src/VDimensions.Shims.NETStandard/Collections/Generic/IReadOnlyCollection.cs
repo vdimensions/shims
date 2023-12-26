@@ -1,4 +1,4 @@
-﻿#if FX_READONLY_COLLECTION
+﻿#if SHIM_READONLY_COLLECTIONS
 using System.Diagnostics.CodeAnalysis;
 
 namespace System.Collections.Generic

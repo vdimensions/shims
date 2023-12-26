@@ -1,4 +1,4 @@
-﻿#if NET20_OR_NEWER && !NET40_OR_NEWER
+﻿#if SHIM_SET
 using System.Diagnostics.CodeAnalysis;
 
 namespace System.Collections.Generic
@@ -6,6 +6,7 @@ namespace System.Collections.Generic
     /// <summary>Provides the base interface for the abstraction of sets.</summary>
     /// <typeparam name="T">The type of elements in the set.</typeparam>
     [SuppressMessage("ReSharper", "UnusedType.Global")]
+    [SuppressMessage("ReSharper", "RedundantExtendsListEntry")]
     public interface ISet<T> 
         : ICollection<T>
         , IEnumerable<T>
