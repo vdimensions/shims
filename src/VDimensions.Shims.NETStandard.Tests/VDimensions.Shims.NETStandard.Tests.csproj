@@ -6,6 +6,16 @@
     <IsTestProject>true</IsTestProject>
     <RootNamespace>VDimensions.Shims.NETStandard.Tests</RootNamespace>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LinqBridge" />
+    <PackageReference Include="NetLegacySupport.Tuple" />
+    <PackageReference Include="Portable.ConcurrentDictionary" />
+    <PackageReference Include="System.Diagnostics.TraceSource" />
+    <PackageReference Include="System.Threading.Tasks.Unofficial" />
+    <PackageReference Include="System.Threading.Thread" />
+    <PackageReference Include="System.Xml.XmlSerializer" />
+  </ItemGroup>
   
   <Import Project="$(RootPath)/ref/Reference.VDimensions.Shims.NETStandard.targets" />
 </Project>

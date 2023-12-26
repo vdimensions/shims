@@ -3,19 +3,27 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace System.Collections.Generic
 {
-    /// <summary>Provides the base interface for the abstraction of sets.</summary>
-    /// <typeparam name="T">The type of elements in the set.</typeparam>
+    /// <summary>
+    /// Provides the base interface for the abstraction of sets.
+    /// </summary>
+    /// <typeparam name="T">
+    /// The type of elements in the set.
+    /// </typeparam>
     [SuppressMessage("ReSharper", "UnusedType.Global")]
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     [SuppressMessage("ReSharper", "RedundantExtendsListEntry")]
     public interface ISet<T> 
         : ICollection<T>
         , IEnumerable<T>
         , IEnumerable
     {
-        /// <summary>Adds an element to the current set and returns a value to indicate if the element was successfully added.</summary>
+        /// <summary>
+        /// Adds an element to the current set and returns a value to indicate if the element was successfully added.
+        /// </summary>
         /// <param name="item">The element to add to the set.</param>
         /// <returns>
-        /// <see langword="true" /> if the element is added to the set; <see langword="false" /> if the element is already in the set.</returns>
+        /// <see langword="true" /> if the element is added to the set; <see langword="false" /> if the element is already in the set.
+        /// </returns>
         new bool Add(T item);
 
         /// <summary>Removes all elements in the specified collection from the current set.</summary>

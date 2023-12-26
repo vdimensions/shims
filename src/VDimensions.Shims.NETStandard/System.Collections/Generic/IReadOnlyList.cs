@@ -10,6 +10,8 @@ namespace System.Collections.Generic
     /// The type of elements in the read-only list.
     /// </typeparam>
     [SuppressMessage("ReSharper", "UnusedType.Global")]
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
+    [SuppressMessage("ReSharper", "UnusedMemberInSuper.Global")]
     #if NET40_OR_NEWER
     public interface IReadOnlyList<out T> : IReadOnlyCollection<T>
     #else

@@ -1,7 +1,9 @@
-﻿using System.Collections.Concurrent;
+﻿#if NETSTANDARD || NET35_OR_NEWER
+using System.Collections.Concurrent;
+#endif
 using NUnit.Framework;
 
-namespace VDimensions.NETStandard.Shim.Tests.Collections.Concurrent
+namespace VDimensions.Shims.NETStandard.Tests.Collections.Concurrent
 {
     [TestFixture]
     public class ConcurrentDictionaryTest
