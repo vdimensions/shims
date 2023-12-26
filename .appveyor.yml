@@ -47,7 +47,7 @@ for:
     deploy:
       - provider: NuGet
         api_key:
-          secure: Zi9RhxSllsk8XZdNSb61Hl66lHtpbpr3Uu+Y1Ri6+cB5Kiu1qyfOGuKhsooTXePN
+          secure: e/WM/m17EikU3j5hKj3yFMOTzT/nRd+t/ks6B+xlvlrqGvkRWEaXFe61Wtl4MU64
         on:
           branch: master
 
@@ -60,7 +60,7 @@ for:
     deploy:
       - provider: NuGet
         api_key:
-          secure: Zi9RhxSllsk8XZdNSb61Hl66lHtpbpr3Uu+Y1Ri6+cB5Kiu1qyfOGuKhsooTXePN
+          secure: e/WM/m17EikU3j5hKj3yFMOTzT/nRd+t/ks6B+xlvlrqGvkRWEaXFe61Wtl4MU64
 
   - version: 0.2-{branch}.{build}
     branches:

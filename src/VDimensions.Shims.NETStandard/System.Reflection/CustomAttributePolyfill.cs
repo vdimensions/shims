@@ -87,7 +87,10 @@ namespace System.Reflection
             }
             return CustomAttributeExtensions
                 .GetCustomAttributes(assembly)
-                .Cast<object>().ToArray();
+                .Where(x => IntrospectionExtensions.GetTypeInfo(attributeType).IsAssignableFrom(IntrospectionExtensions.GetTypeInfo(x.GetType())))
+                // TODO: inherit check
+                .Cast<object>()
+                .ToArray();
         }
 
         /// <summary>
