@@ -1,9 +1,9 @@
-﻿namespace System.Text
+﻿#if POLYFILL_ENCODING_GETSTRING
+namespace System.Text
 {
     /// A static class containing extension methods common to the Encoding class.
-    public static class EncodingExtensions
+    public static class EncodingPolyfill
     {
-        #if NETSTANDARD && !NETSTANDARD1_3_OR_NEWER
         /// <summary>
         /// Decodes a sequence of bytes from the specified byte array into a string
         /// </summary>
@@ -41,6 +41,6 @@
 
             return encoding.GetString(bytes, 0, bytes.Length);
         }
-        #endif
     }
 }
+#endif

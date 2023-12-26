@@ -87,58 +87,121 @@
     </When>
     <When Condition="'$(TargetFramework)' == 'netstandard2.0'">
       <PropertyGroup>
+        <Polyfills>$(Polyfills); POLYFILL_STRING_REPLACE</Polyfills>
       </PropertyGroup>
     </When>
     <When Condition="'$(TargetFramework)' == 'netstandard1.6'">
       <PropertyGroup>
-        <Polyfills>$(Polyfills); POLYFILL_CUSTOM_ATTRIBUTES</Polyfills>
+        <Polyfills>$(Polyfills); POLYFILL_CUSTOM_ATTRIBUTES; POLYFILL_STRING_REPLACE</Polyfills>
       </PropertyGroup>
     </When>
     <When Condition="'$(TargetFramework)' == 'netstandard1.5'">
       <PropertyGroup>
-        <Polyfills>$(Polyfills); POLYFILL_CUSTOM_ATTRIBUTES</Polyfills>
+        <Polyfills>$(Polyfills); POLYFILL_CUSTOM_ATTRIBUTES; POLYFILL_STRING_REPLACE</Polyfills>
       </PropertyGroup>
     </When>
     <When Condition="'$(TargetFramework)' == 'netstandard1.4'">
       <PropertyGroup>
-        <Polyfills>$(Polyfills); POLYFILL_CUSTOM_ATTRIBUTES</Polyfills>
+        <Polyfills>$(Polyfills); POLYFILL_CUSTOM_ATTRIBUTES; POLYFILL_STRING_REPLACE</Polyfills>
       </PropertyGroup>
     </When>
     <When Condition="'$(TargetFramework)' == 'netstandard1.3'">
       <PropertyGroup>
-        <Polyfills>$(Polyfills); POLYFILL_CUSTOM_ATTRIBUTES</Polyfills>
+        <Polyfills>$(Polyfills); POLYFILL_CUSTOM_ATTRIBUTES; POLYFILL_STRING_REPLACE</Polyfills>
       </PropertyGroup>
     </When>
     <When Condition="'$(TargetFramework)' == 'netstandard1.2'">
       <PropertyGroup>
-        <Polyfills>$(Polyfills); POLYFILL_CUSTOM_ATTRIBUTES</Polyfills>
+        <Polyfills>$(Polyfills); POLYFILL_CUSTOM_ATTRIBUTES; POLYFILL_ENCODING_GETSTRING; POLYFILL_STRING_REPLACE</Polyfills>
       </PropertyGroup>
     </When>
     <When Condition="'$(TargetFramework)' == 'netstandard1.1'">
       <PropertyGroup>
-        <Polyfills>$(Polyfills); POLYFILL_CUSTOM_ATTRIBUTES</Polyfills>
+        <Polyfills>$(Polyfills); POLYFILL_CUSTOM_ATTRIBUTES; POLYFILL_ENCODING_GETSTRING; POLYFILL_STRING_REPLACE</Polyfills>
       </PropertyGroup>
     </When>
     <When Condition="'$(TargetFramework)' == 'netstandard1.0'">
       <PropertyGroup>
-        <Polyfills>$(Polyfills); POLYFILL_CUSTOM_ATTRIBUTES</Polyfills>
+        <Polyfills>$(Polyfills); POLYFILL_CUSTOM_ATTRIBUTES; POLYFILL_ENCODING_GETSTRING; POLYFILL_STRING_REPLACE</Polyfills>
+      </PropertyGroup>
+    </When>
+    <When Condition="'$(TargetFramework)' == 'net48'">
+      <PropertyGroup>
+        <Polyfills>$(Polyfills); POLYFILL_STRING_REPLACE</Polyfills>
+      </PropertyGroup>
+    </When>
+    <When Condition="'$(TargetFramework)' == 'net48'">
+      <PropertyGroup>
+        <Polyfills>$(Polyfills); POLYFILL_STRING_REPLACE</Polyfills>
+      </PropertyGroup>
+    </When>
+    <When Condition="'$(TargetFramework)' == 'net472'">
+      <PropertyGroup>
+        <Polyfills>$(Polyfills); POLYFILL_STRING_REPLACE</Polyfills>
+      </PropertyGroup>
+    </When>
+    <When Condition="'$(TargetFramework)' == 'net471'">
+      <PropertyGroup>
+        <Polyfills>$(Polyfills); POLYFILL_STRING_REPLACE</Polyfills>
+      </PropertyGroup>
+    </When>
+    <When Condition="'$(TargetFramework)' == 'net47'">
+      <PropertyGroup>
+        <Polyfills>$(Polyfills); POLYFILL_STRING_REPLACE</Polyfills>
+      </PropertyGroup>
+    </When>
+    <When Condition="'$(TargetFramework)' == 'net462'">
+      <PropertyGroup>
+        <Polyfills>$(Polyfills); POLYFILL_STRING_REPLACE</Polyfills>
+      </PropertyGroup>
+    </When>
+    <When Condition="'$(TargetFramework)' == 'net461'">
+      <PropertyGroup>
+        <Polyfills>$(Polyfills); POLYFILL_STRING_REPLACE</Polyfills>
+      </PropertyGroup>
+    </When>
+    <When Condition="'$(TargetFramework)' == 'net46'">
+      <PropertyGroup>
+        <Polyfills>$(Polyfills); POLYFILL_STRING_REPLACE</Polyfills>
+      </PropertyGroup>
+    </When>
+    <When Condition="'$(TargetFramework)' == 'net452'">
+      <PropertyGroup>
+        <Polyfills>$(Polyfills); POLYFILL_STRING_REPLACE</Polyfills>
+      </PropertyGroup>
+    </When>
+    <When Condition="'$(TargetFramework)' == 'net451'">
+      <PropertyGroup>
+        <Polyfills>$(Polyfills); POLYFILL_STRING_REPLACE</Polyfills>
+      </PropertyGroup>
+    </When>
+    <When Condition="'$(TargetFramework)' == 'net45'">
+      <PropertyGroup>
+        <Polyfills>$(Polyfills); POLYFILL_STRING_REPLACE</Polyfills>
       </PropertyGroup>
     </When>
     <When Condition="'$(TargetFramework)' == 'net40'">
       <PropertyGroup>
         <Shims>$(Shims); SHIM_CUSTOM_ATTRIBUTES; SHIM_READONLY_COLLECTIONS</Shims>
+        <Polyfills>$(Polyfills); POLYFILL_STRING_REPLACE</Polyfills>
       </PropertyGroup>
     </When>
     <When Condition="'$(TargetFramework)' == 'net35'">
       <PropertyGroup>
         <Shims>$(Shims); SHIM_CUSTOM_ATTRIBUTES; SHIM_READONLY_COLLECTIONS; SHIM_SET; SHIM_SORTED_SET</Shims>
-        <Polyfills>$(Polyfills); POLYFILL_ARRAY_STRUCTURAL_COMPARABLE; POLYFILL_ARRAY_STRUCTURAL_EQUATABLE</Polyfills>
+        <Polyfills>$(Polyfills); POLYFILL_ARRAY_STRUCTURAL_COMPARABLE; POLYFILL_ARRAY_STRUCTURAL_EQUATABLE; POLYFILL_STRING_REPLACE</Polyfills>
+      </PropertyGroup>
+    </When>
+    <When Condition="'$(TargetFramework)' == 'net30'">
+      <PropertyGroup>
+        <Shims>$(Shims); SHIM_CUSTOM_ATTRIBUTES; SHIM_HASHSET; SHIM_READONLY_COLLECTIONS; SHIM_SET; SHIM_SORTED_SET</Shims>
+        <Polyfills>$(Polyfills); POLYFILL_ARRAY_STRUCTURAL_COMPARABLE; POLYFILL_ARRAY_STRUCTURAL_EQUATABLE; POLYFILL_STRING_REPLACE</Polyfills>
       </PropertyGroup>
     </When>
     <When Condition="'$(TargetFramework)' == 'net20'">
       <PropertyGroup>
         <Shims>$(Shims); SHIM_CUSTOM_ATTRIBUTES; SHIM_HASHSET; SHIM_READONLY_COLLECTIONS; SHIM_SET; SHIM_SORTED_SET</Shims>
-        <Polyfills>$(Polyfills); POLYFILL_ARRAY_STRUCTURAL_COMPARABLE; POLYFILL_ARRAY_STRUCTURAL_EQUATABLE</Polyfills>
+        <Polyfills>$(Polyfills); POLYFILL_ARRAY_STRUCTURAL_COMPARABLE; POLYFILL_ARRAY_STRUCTURAL_EQUATABLE; POLYFILL_STRING_REPLACE</Polyfills>
       </PropertyGroup>
     </When>
   </Choose>
